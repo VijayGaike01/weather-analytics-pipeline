@@ -1,10 +1,18 @@
 import json
 import requests
 from datetime import datetime
+import logging
 
 
 # Get Timestamp
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+#logger config
+logging.basicConfig(
+    filename="logs/ingestion.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 # Read config
 with open("config/config.json", "r") as file:
@@ -15,6 +23,8 @@ cities = config["cities"]
 
 successful_cities = []
 failed_cities = []
+
+logging.info("Starting weather ingestion process")
 
 for city in cities:
     try:
@@ -31,7 +41,9 @@ for city in cities:
 
                 successful_cities.append(weather_data)
 
-                print(f"[SUCCESS] {city}")
+                logging.info(
+                    f"Successfully fetched weather data for {city}"
+                )
 
         else:
 
@@ -41,7 +53,10 @@ for city in cities:
                 "error": response.text
             })
 
-            print(f"[FAILED] {city}")
+            logging.error(
+                f"Failed to fetch weather data for {city}. "
+                f"Status Code: {response.status_code}"
+            )
 
     except Exception as e:
 
@@ -50,7 +65,9 @@ for city in cities:
             "error": str(e)
         })
 
-        print(f"[ERROR] {city} : {e}")
+        logging.exception(
+            f"Exception occurred while processing city {city}"
+        )
 
 #final output structure
 output_data = {
@@ -67,9 +84,19 @@ output_file = f"data/raw/weather_{timestamp}.json"
 with open(output_file, "w") as file:
     json.dump(output_data, file, indent=4)
 
+logging.info(
+    f"Output file generated successfully: {output_file}"
+)
+
 print("\n========== INGESTION SUMMARY ==========")
 print(f"Cities Requested : {len(cities)}")
 print(f"Success          : {len(successful_cities)}")
 print(f"Failed           : {len(failed_cities)}")
 print(f"Output File      : {output_file}")
 print("=======================================\n")
+
+logging.info(
+    f"Ingestion completed. "
+    f"Success={len(successful_cities)}, "
+    f"Failed={len(failed_cities)}"
+)
