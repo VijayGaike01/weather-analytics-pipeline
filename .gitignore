@@ -13,3 +13,5 @@ data/processed/*.csv
 .vscode/
 
 .airflow/
+
+config/config.json
