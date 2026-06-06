@@ -1,0 +1,10 @@
+{
+  "api_key": "YOUR_API_KEY",
+  "cities": [
+        "Pune",
+        "Mumbai",
+        "Delhi",
+        "Bangalore",
+        "Hyderabad"
+    ]
+}
