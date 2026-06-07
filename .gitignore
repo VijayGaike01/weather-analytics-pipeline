@@ -8,6 +8,7 @@ logs/*.log
 
 data/raw/*.json
 data/processed/*.csv
+data/processed_metadata/*.json
 
 .idea/
 .vscode/
