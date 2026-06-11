@@ -1,0 +1,46 @@
+name: Weather Analytics Pipeline
+
+on:
+
+workflow_dispatch:
+
+jobs:
+
+weather-etl:
+
+```
+runs-on: ubuntu-latest
+
+steps:
+
+  - name: Checkout Repository
+    uses: actions/checkout@v4
+
+  - name: Setup Python
+    uses: actions/setup-python@v5
+    with:
+      python-version: "3.12"
+
+  - name: Upgrade Pip
+    run: |
+      python -m pip install --upgrade pip
+
+  - name: Install Dependencies
+    run: |
+      pip install -r requirements.txt
+
+  - name: Create config.json
+    run: |
+      cp config/config_template.json config/config.json
+
+  - name: Run Pipeline
+    run: |
+      python scripts/master_pipeline.py
+
+  - name: Upload Logs
+    if: always()
+    uses: actions/upload-artifact@v4
+    with:
+      name: pipeline-logs
+      path: logs/
+```
