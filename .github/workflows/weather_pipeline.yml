@@ -37,3 +37,9 @@ jobs:
         with:
           name: pipeline-logs
           path: logs/
+      - name: Upload Database
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weather-database
+          path: database/weather.db
