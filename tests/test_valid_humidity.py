@@ -13,8 +13,8 @@ def test_valid_humidity_range():
     cursor.execute("""
         SELECT COUNT(*)
         FROM weather_observations
-        WHERE humidity < 0
-           OR humidity > 100
+        WHERE humidity_pct < 0
+           OR humidity_pct > 100
     """)
 
     invalid_count = cursor.fetchone()[0]
