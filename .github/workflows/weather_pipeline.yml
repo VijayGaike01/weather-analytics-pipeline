@@ -3,6 +3,9 @@ name: Weather Analytics Pipeline
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   weather-etl:
     runs-on: ubuntu-latest
