@@ -223,31 +223,56 @@ def get_new_csv_files(
 
 def validate_dataframe(df: pd.DataFrame, filename: str) -> None:
     """
-    Basic sanity checks on a freshly loaded DataFrame.
+    Generic pre-load validation.
 
-    Raises:
-        ValueError — if the file fails validation
+    Transform stage owns schema.
+    Load stage only validates data quality.
     """
+
     logger = _get_load_logger()
 
+    # Empty dataframe
     if df.empty:
-        raise ValueError(f"File '{filename}' is empty — no rows to load.")
+        raise ValueError(
+            f"File '{filename}' is empty — no rows to load."
+        )
 
-    if EXPECTED_COLUMNS:
-        missing = EXPECTED_COLUMNS - set(df.columns)
-        if missing:
-            raise ValueError(
-                f"File '{filename}' is missing required columns: {missing}. "
-                f"Found: {set(df.columns)}"
-            )
+    # Duplicate rows
+    duplicate_count = df.duplicated().sum()
 
+    if duplicate_count > 0:
+        raise ValueError(
+            f"Found {duplicate_count} duplicate rows."
+        )
+
+    # Entirely null columns
+    empty_columns = [
+        col
+        for col in df.columns
+        if df[col].isnull().all()
+    ]
+
+    if empty_columns:
+        raise ValueError(
+            f"Columns contain only NULL values: {empty_columns}"
+        )
+
+    # Log partial nulls
     null_counts = df.isnull().sum()
     cols_with_nulls = null_counts[null_counts > 0]
+
     if not cols_with_nulls.empty:
         logger.warning(
-            "File '%s' contains null values — %s",
-            filename, cols_with_nulls.to_dict(),
+            "File '%s' contains null values: %s",
+            filename,
+            cols_with_nulls.to_dict(),
         )
+
+    logger.info(
+        "Validation passed: %d rows, %d columns.",
+        len(df),
+        len(df.columns),
+    )
 
 
 # ─────────────────────────────────────────────────────────────────────────────
