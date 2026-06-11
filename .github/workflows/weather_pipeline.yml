@@ -34,18 +34,28 @@ jobs:
       - name: Run Pipeline
         run: python scripts/master_pipeline.py
 
+      - name: Check Existing Database
+        run: |
+          ls -lh database
+
+      - name: Count Existing Rows
+        run: |
+          python - <<EOF
+          import sqlite3
+          conn = sqlite3.connect("database/weather.db")
+          cur = conn.cursor()
+          cur.execute("SELECT COUNT(*) FROM weather_observations")
+          print("ROWS BEFORE PIPELINE:", cur.fetchone()[0])
+          conn.close()
+          EOF
+
       - name: Upload Logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: pipeline-logs
           path: logs/
-      - name: Upload Database
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: weather-database
-          path: database/weather.db
+      
       - name: Commit Database
         run: |
           git config --global user.name "github-actions[bot]"
