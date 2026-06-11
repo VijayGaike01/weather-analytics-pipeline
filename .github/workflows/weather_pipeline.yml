@@ -34,6 +34,10 @@ jobs:
       - name: Run Pipeline
         run: python scripts/master_pipeline.py
 
+      - name: Run Validation Tests
+        run: |
+          pytest tests -v
+
       - name: Check Existing Database
         run: |
           ls -lh database
