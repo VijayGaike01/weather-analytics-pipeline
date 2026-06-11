@@ -11,7 +11,8 @@ data/processed/*.csv
 data/processed_metadata/*.json
 data/load_metadata/*.json
 
-database/*.db
+database/*
+!database/weather.db
 
 .idea/
 .vscode/
