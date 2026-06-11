@@ -1,38 +1,60 @@
+"""
+transform.py
+============
+Stage 2 of the Weather Analytics ETL pipeline.
+
+Responsibility: flatten raw JSON files produced by extract_weather.py into
+clean, enriched CSVs and write them to data/processed/.
+
+Designed to be called by master_pipeline.py → run_transform(), but also
+runnable standalone for debugging (python transform.py).
+
+Public API (consumed by master_pipeline.py)
+-------------------------------------------
+  load_metadata(metadata_file)                          → dict
+  save_metadata(metadata_file, metadata)                → None
+  mark_as_processed(metadata_file, filename)            → None
+  get_unprocessed_files(raw_folder, metadata)           → list[str]
+  load_raw_json(filepath)                               → dict
+  flatten_weather(record)                               → dict
+  build_dataframe(wrapper)                              → pd.DataFrame
+  clean_dataframe(df)                                   → pd.DataFrame
+  add_derived_columns(df)                               → pd.DataFrame
+  add_business_columns(df)                              → pd.DataFrame
+  save_processed(df, source_filename, output_folder)    → str
+  print_quality_report(df, filename)                    → None
+"""
+
+from __future__ import annotations
+
 import json
 import os
-import logging
-import pandas as pd
-from datetime import datetime
+import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
+import pandas as pd
 
-# ── Logging Setup ──────────────────────────────────────────────────────────────
-os.makedirs("logs", exist_ok=True)
-logging.basicConfig(
-    filename="logs/transform.log",
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s",
-)
-logger = logging.getLogger(__name__)
+# ── Shared definitions ────────────────────────────────────────────────────────
+from pipeline_config import DEFAULTS, get_logger, load_config
 
 
-# ── Change 5: Config Loader ────────────────────────────────────────────────────
-def load_config(config_path: str = "config/config.json") -> dict:
-    """Load paths and settings from the shared project config."""
-    path = Path(config_path)
-    if not path.exists():
-        raise FileNotFoundError(f"Config not found: {path.resolve()}")
-    with path.open("r", encoding="utf-8") as f:
-        return json.load(f)
+# ─────────────────────────────────────────────────────────────────────────────
+# NOTE: No module-level logging setup here.
+#       get_logger() is called inside each function/standalone entry point
+#       so importing this module never causes side effects.
+# ─────────────────────────────────────────────────────────────────────────────
 
 
-# ── Change 1: Metadata Tracker ─────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
+# Metadata Tracker  — tracks which raw files have already been transformed
+# ─────────────────────────────────────────────────────────────────────────────
+
 def load_metadata(metadata_file: str) -> dict:
-    """Load the list of already-processed raw files."""
+    """Return the processed-files tracking dict; returns empty dict on first run."""
     if Path(metadata_file).exists():
         with open(metadata_file, "r", encoding="utf-8") as f:
             return json.load(f)
-    # First run — no metadata yet
     return {"processed_files": []}
 
 
@@ -44,55 +66,53 @@ def save_metadata(metadata_file: str, metadata: dict) -> None:
 
 
 def mark_as_processed(metadata_file: str, filename: str) -> None:
-    """Add a filename to the processed list."""
+    """Add a filename to the processed list and persist."""
     metadata = load_metadata(metadata_file)
     if filename not in metadata["processed_files"]:
         metadata["processed_files"].append(filename)
     save_metadata(metadata_file, metadata)
-    logger.debug(f"Marked as processed: {filename}")
 
 
 def get_unprocessed_files(raw_folder: str, metadata: dict) -> list[str]:
     """
-    Return only raw JSON files not yet in the processed list.
+    Return only raw JSON filenames not yet in the processed list.
 
-    Run 1 → [A, B, C]  (all new)
-    Run 2 → [D]        (A, B, C already tracked)
-    Run 3 → []         (nothing new)
+    Run 1 → [A, B, C]   (all new)
+    Run 2 → [D]          (A, B, C already tracked)
+    Run 3 → []           (nothing new)
     """
     all_files    = sorted(f for f in os.listdir(raw_folder) if f.endswith(".json"))
     already_done = set(metadata["processed_files"])
-    new_files    = [f for f in all_files if f not in already_done]
-
-    logger.info(
-        "Files — total: %d | already processed: %d | new: %d",
-        len(all_files), len(already_done), len(new_files),
-    )
-    return new_files
+    return [f for f in all_files if f not in already_done]
 
 
-# ── Load Raw JSON ──────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
+# Load Raw JSON
+# ─────────────────────────────────────────────────────────────────────────────
+
 def load_raw_json(filepath: str) -> dict:
+    """Read and return the JSON wrapper produced by extract_weather."""
     with open(filepath, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    logger.info(f"Loaded: {filepath}")
-    return data
+        return json.load(f)
 
 
-# ── Flatten ONE city record ────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
+# Flatten / Build DataFrame
+# ─────────────────────────────────────────────────────────────────────────────
+
 def flatten_weather(record: dict) -> dict:
     """
     Flatten a single city dict from the 'weather_data' list.
     Temperatures are Celsius because the extractor uses units=metric.
     """
     return {
-        # ── Identity ──────────────────────────────────────────
+        # Identity
         "city":               record.get("name"),
         "country":            record.get("sys", {}).get("country"),
         "latitude":           record.get("coord", {}).get("lat"),
         "longitude":          record.get("coord", {}).get("lon"),
 
-        # ── Time ──────────────────────────────────────────────
+        # Time
         "timestamp_utc":      datetime.utcfromtimestamp(
                                   record.get("dt", 0)
                               ).strftime("%Y-%m-%d %H:%M:%S"),
@@ -103,37 +123,37 @@ def flatten_weather(record: dict) -> dict:
                                   record.get("sys", {}).get("sunset", 0)
                               ).strftime("%Y-%m-%d %H:%M:%S"),
 
-        # ── Weather Condition ──────────────────────────────────
+        # Weather condition
         "weather_main":       record.get("weather", [{}])[0].get("main"),
         "weather_desc":       record.get("weather", [{}])[0].get("description"),
         "weather_id":         record.get("weather", [{}])[0].get("id"),
 
-        # ── Temperature (already Celsius from API) ─────────────
+        # Temperature (already Celsius from API)
         "temp_celsius":       record.get("main", {}).get("temp"),
         "feels_like_celsius": record.get("main", {}).get("feels_like"),
         "temp_min_celsius":   record.get("main", {}).get("temp_min"),
         "temp_max_celsius":   record.get("main", {}).get("temp_max"),
 
-        # ── Atmosphere ─────────────────────────────────────────
+        # Atmosphere
         "humidity_pct":       record.get("main", {}).get("humidity"),
         "pressure_hpa":       record.get("main", {}).get("pressure"),
         "visibility_m":       record.get("visibility"),
 
-        # ── Wind ───────────────────────────────────────────────
+        # Wind
         "wind_speed_mps":     record.get("wind", {}).get("speed"),
         "wind_deg":           record.get("wind", {}).get("deg"),
 
-        # ── Clouds & Rain ──────────────────────────────────────
+        # Clouds & rain
         "cloud_pct":          record.get("clouds", {}).get("all"),
         "rain_1h_mm":         record.get("rain", {}).get("1h", 0.0),
     }
 
 
-# ── Build DataFrame from a single raw file ────────────────────────────────────
 def build_dataframe(wrapper: dict) -> pd.DataFrame:
     """
     Unpack the 'weather_data' list and flatten each city record.
-    The wrapper structure (from the extractor) is:
+
+    Wrapper structure (from extract_weather):
         {
             "ingestion_timestamp": "...",
             "weather_data":  [ {city_1}, {city_2}, ... ],
@@ -153,8 +173,12 @@ def build_dataframe(wrapper: dict) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-# ── Clean Data ────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
+# Cleaning
+# ─────────────────────────────────────────────────────────────────────────────
+
 def clean_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    """Drop duplicates, remove rows missing identity fields, fix dtypes."""
     initial = len(df)
 
     df = df.drop_duplicates()
@@ -168,19 +192,18 @@ def clean_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     df["humidity_pct"]  = df["humidity_pct"].astype(float)
     df["cloud_pct"]     = df["cloud_pct"].astype(float)
 
-    logger.info(f"Clean: {initial} → {len(df)} rows (dropped {initial - len(df)})")
     return df
 
 
-# ── Engineering Derived Columns ───────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
+# Derived / Engineering Columns
+# ─────────────────────────────────────────────────────────────────────────────
+
 def add_derived_columns(df: pd.DataFrame) -> pd.DataFrame:
     """Unit conversions and time features for analytics."""
 
-    # Temperature
     df["temp_fahrenheit"] = ((df["temp_celsius"] * 9 / 5) + 32).round(2)
-
-    # Wind
-    df["wind_speed_kmh"] = (df["wind_speed_mps"] * 3.6).round(2)
+    df["wind_speed_kmh"]  = (df["wind_speed_mps"] * 3.6).round(2)
 
     # Heat index approximation
     df["heat_index"] = (
@@ -200,13 +223,14 @@ def add_derived_columns(df: pd.DataFrame) -> pd.DataFrame:
         (df["sunset_utc"] - df["sunrise_utc"]).dt.seconds / 3600
     ).round(2)
 
-    logger.info("Engineering columns added.")
     return df
 
 
-# ── Change 3: Business / Analytics Columns ────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
+# Business / Analytics Columns
+# ─────────────────────────────────────────────────────────────────────────────
 
-# Maps every OpenWeather 'main' value to one of 4 severity buckets
+# Maps every OpenWeather 'main' value to one of four severity buckets
 WEATHER_SEVERITY_MAP: dict[str, str] = {
     "Clear":        "Clear",
     "Clouds":       "Cloudy",
@@ -230,37 +254,35 @@ def add_business_columns(df: pd.DataFrame) -> pd.DataFrame:
     """
     Dashboard-friendly categorical columns.
 
-    temp_category    : Cold / Moderate / Hot       (based on temp_celsius)
-    humidity_category: Low / Medium / High          (based on humidity_pct)
+    temp_category    : Cold / Moderate / Hot        (based on temp_celsius)
+    humidity_category: Low / Medium / High           (based on humidity_pct)
     weather_severity : Clear / Cloudy / Rainy / Storm (based on weather_main)
     """
-
-    # Temperature Category  — <15 °C = Cold | 15–30 = Moderate | >30 = Hot
     df["temp_category"] = pd.cut(
         df["temp_celsius"],
         bins=[-float("inf"), 15, 30, float("inf")],
         labels=["Cold", "Moderate", "Hot"],
     ).astype(str)
 
-    # Humidity Category  — <40% = Low | 40–70% = Medium | >70% = High
     df["humidity_category"] = pd.cut(
         df["humidity_pct"],
         bins=[-float("inf"), 40, 70, float("inf")],
         labels=["Low", "Medium", "High"],
     ).astype(str)
 
-    # Weather Severity
     df["weather_severity"] = (
         df["weather_main"]
         .map(WEATHER_SEVERITY_MAP)
-        .fillna("Clear")                # fallback for any unmapped value
+        .fillna("Clear")          # fallback for any unmapped value
     )
 
-    logger.info("Business columns added.")
     return df
 
 
-# ── Change 2: Save CSV — filename matches source JSON ─────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
+# Output
+# ─────────────────────────────────────────────────────────────────────────────
+
 def save_processed(df: pd.DataFrame, source_filename: str, output_folder: str) -> str:
     """
     Save the processed DataFrame as a CSV.
@@ -270,89 +292,95 @@ def save_processed(df: pd.DataFrame, source_filename: str, output_folder: str) -
         OUT → data/processed/weather_20260807_103000.csv
     """
     os.makedirs(output_folder, exist_ok=True)
-    base_name   = Path(source_filename).stem          # strip .json extension
+    base_name   = Path(source_filename).stem
     output_path = os.path.join(output_folder, f"{base_name}.csv")
     df.to_csv(output_path, index=False)
-    logger.info(f"Saved: {output_path}")
     return output_path
 
 
-# ── Change 4: Data Quality Report ─────────────────────────────────────────────
 def print_quality_report(df: pd.DataFrame, filename: str) -> None:
-    """Log and print a per-file data quality summary."""
+    """Print a per-file data quality summary to stdout."""
     null_total = int(df.isnull().sum().sum())
     null_cols  = df.columns[df.isnull().any()].tolist()
 
-    logger.info("--- Quality Report: %s ---", filename)
-    logger.info("Rows Processed : %d", len(df))
-    logger.info("Unique Cities  : %d", df["city"].nunique())
-    logger.info("Null Values    : %d", null_total)
-    if null_cols:
-        logger.warning("Null Columns   : %s", null_cols)
-
-    print(f"\n   📋 Quality Report")
+    print(f"\n   Quality Report: {filename}")
     print(f"      Rows Processed  : {len(df)}")
     print(f"      Unique Cities   : {df['city'].nunique()}")
     print(f"      Null Values     : {null_total}")
-    print(f"      Null Columns    : {null_cols if null_cols else 'None ✅'}")
-
-    # Business column distribution (quick sanity check)
+    print(f"      Null Columns    : {null_cols if null_cols else 'None'}")
     print(f"      Temp Breakdown  : {df['temp_category'].value_counts().to_dict()}")
     print(f"      Severity Split  : {df['weather_severity'].value_counts().to_dict()}")
 
 
-# ── Main ───────────────────────────────────────────────────────────────────────
-if __name__ == "__main__":
-    print("🔄  Starting transformation...")
+# ─────────────────────────────────────────────────────────────────────────────
+# Standalone entry point
+# Only used when running:  python transform.py
+# master_pipeline.py calls the functions above directly via run_transform().
+# ─────────────────────────────────────────────────────────────────────────────
 
-    # ── Change 5: Load paths from config ──────────────────────
+def _standalone_main() -> int:
+    logger = get_logger(
+        name     = "weather_transform",
+        log_file = f"weather_transform_{datetime.now().strftime('%Y%m%d')}.log",
+    )
+
+    logger.info("===== Transform Stage (standalone) =====")
+
     try:
         config = load_config()
-    except FileNotFoundError as e:
-        print(f"❌  {e}")
-        raise SystemExit(2)
+    except (FileNotFoundError, json.JSONDecodeError, ValueError) as e:
+        logger.critical("Config error — aborting: %s", e)
+        return 2
 
-    RAW_FOLDER       = config.get("raw_folder",       "data/raw")
-    PROCESSED_FOLDER = config.get("processed_folder", "data/processed")
-    METADATA_FILE    = config.get("metadata_file",    "data/processed_metadata/processed_files.json")
+    raw_folder       = config.get("raw_folder",       DEFAULTS.raw_folder)
+    processed_folder = config.get("processed_folder", DEFAULTS.processed_folder)
+    metadata_file    = config.get("metadata_file",    DEFAULTS.metadata_file)
 
-    # ── Change 1: Find only unprocessed files ─────────────────
-    metadata  = load_metadata(METADATA_FILE)
-    new_files = get_unprocessed_files(RAW_FOLDER, metadata)
+    metadata  = load_metadata(metadata_file)
+    new_files = get_unprocessed_files(raw_folder, metadata)
+
+    logger.info(
+        "Files — total: %d | already processed: %d | new: %d",
+        len([f for f in os.listdir(raw_folder) if f.endswith(".json")]),
+        len(metadata.get("processed_files", [])),
+        len(new_files),
+    )
 
     if not new_files:
-        print("✅  No new files to process. Already up to date.")
-        raise SystemExit(0)
+        logger.info("No new files to process. Already up to date.")
+        return 0
 
     total_rows = 0
 
     for filename in new_files:
-        filepath = os.path.join(RAW_FOLDER, filename)
-        print(f"\n⚙️   Processing: {filename}")
+        filepath = os.path.join(raw_folder, filename)
+        logger.info("Processing: %s", filename)
 
         try:
             wrapper = load_raw_json(filepath)
             df      = build_dataframe(wrapper)
 
             if df.empty:
-                logger.warning(f"No records in {filename} — skipping")
-                print(f"   ⚠️  No weather_data records found — skipping")
+                logger.warning("No records in %s — skipping.", filename)
                 continue
 
             df = clean_dataframe(df)
             df = add_derived_columns(df)
-            df = add_business_columns(df)         # Change 3
+            df = add_business_columns(df)
 
-            output_path = save_processed(df, filename, PROCESSED_FOLDER)  # Change 2
-            mark_as_processed(METADATA_FILE, filename)                     # Change 1
+            output_path = save_processed(df, filename, processed_folder)
+            mark_as_processed(metadata_file, filename)
 
             total_rows += len(df)
-            print(f"   ✅  Saved → {output_path}")
-
-            print_quality_report(df, filename)                             # Change 4
+            logger.info("Saved: %s (%d rows)", output_path, len(df))
+            print_quality_report(df, filename)
 
         except Exception as e:
-            logger.error(f"Failed to process {filename}: {e}")
-            print(f"   ❌  Error: {e}")
+            logger.error("Failed to process %s: %s", filename, e)
 
-    print(f"\n🏁  Done. Total rows written across all files: {total_rows}")
+    logger.info("Done. Total rows written: %d", total_rows)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(_standalone_main())
