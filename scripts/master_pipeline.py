@@ -39,6 +39,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
+from export_powerbi_dataset import export_dataset
+
 # ── Shared definitions ────────────────────────────────────────────────────────
 from pipeline_config import (
     DEFAULTS,
@@ -398,10 +400,33 @@ def orchestrate(
     # LOAD
     if run_l:
         _stage_header("LOAD", logger, dry_run)
+
         if not dry_run:
             res = run_load(csv_files if run_t else None, logger)
             results.append(res)
             _stage_footer(res, logger)
+
+            # Export Power BI dataset only if load succeeded
+            if res.status in ("SUCCESS", "PARTIAL"):
+
+                logger.info("")
+                logger.info("  ┌─────────────────────────────────────────┐")
+                logger.info("  │  Stage: EXPORT POWER BI DATASET         │")
+                logger.info("  └─────────────────────────────────────────┘")
+
+                try:
+                    csv_path = export_dataset()
+
+                    logger.info(
+                        "Power BI dataset exported: %s",
+                        csv_path
+                    )
+
+                except Exception as e:
+                    logger.error(
+                        "Power BI export failed: %s",
+                        e
+                    )
 
     return results
 

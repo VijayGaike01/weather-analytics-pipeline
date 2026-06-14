@@ -63,18 +63,26 @@ jobs:
           name: pipeline-logs
           path: logs/
       
-      - name: Commit Database
+      - name: Commit Database and Power BI Dataset
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      
+
           git add database/weather.db
-      
+          git add powerbi/weather_dataset.csv
+
           if git diff --cached --quiet; then
-            echo "No database changes to commit"
+            echo "No changes to commit"
           else
-            git commit -m "chore: update weather database"
+            git commit -m "chore: update weather analytics data"
           fi
+
+      - name: Upload Power BI Dataset
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: powerbi-dataset
+          path: powerbi/weather_dataset.csv
 
       - name: Push Changes
         run: |
