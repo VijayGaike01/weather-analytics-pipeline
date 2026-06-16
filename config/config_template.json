@@ -1,10 +1,25 @@
 {
   "api_key": "OPENWEATHER_API_KEY",
   "cities": [
-        "Pune",
         "Mumbai",
-        "Delhi",
-        "Bangalore",
-        "Hyderabad"
+        "Pune",
+        "Nagpur",
+        "Nashik",
+        "Thane",
+        "Navi Mumbai",
+        "Aurangabad",
+        "Kolhapur",
+        "Solapur",
+        "Amravati",
+        "Akola",
+        "Jalgaon",
+        "Sangli",
+        "Satara",
+        "Ratnagiri",
+        "Latur",
+        "Nanded",
+        "Chandrapur",
+        "Wardha",
+        "Ahmednagar"
     ]
 }
