@@ -1,25 +1,103 @@
 {
   "api_key": "OPENWEATHER_API_KEY",
   "cities": [
-        "Mumbai",
-        "Pune",
-        "Nagpur",
-        "Nashik",
-        "Thane",
-        "Navi Mumbai",
-        "Aurangabad",
-        "Kolhapur",
-        "Solapur",
-        "Amravati",
-        "Akola",
-        "Jalgaon",
-        "Sangli",
-        "Satara",
-        "Ratnagiri",
-        "Latur",
-        "Nanded",
-        "Chandrapur",
-        "Wardha",
-        "Ahmednagar"
-    ]
+    "Mumbai",
+    "Pune",
+    "Nagpur",
+    "Nashik",
+    "Aurangabad",
+    "Kolhapur",
+    "Solapur",
+    "Amravati",
+    "Nanded",
+    "Ratnagiri",
+
+    "Delhi",
+    "New Delhi",
+    "Noida",
+    "Gurgaon",
+    "Faridabad",
+    "Ghaziabad",
+
+    "Bangalore",
+    "Mysore",
+    "Mangalore",
+    "Hubli",
+
+    "Hyderabad",
+    "Warangal",
+    "Karimnagar",
+
+    "Chennai",
+    "Coimbatore",
+    "Madurai",
+    "Salem",
+    "Tiruchirappalli",
+
+    "Kolkata",
+    "Howrah",
+    "Durgapur",
+    "Siliguri",
+
+    "Ahmedabad",
+    "Surat",
+    "Vadodara",
+    "Rajkot",
+    "Bhavnagar",
+
+    "Jaipur",
+    "Jodhpur",
+    "Udaipur",
+    "Kota",
+    "Ajmer",
+
+    "Lucknow",
+    "Kanpur",
+    "Varanasi",
+    "Prayagraj",
+    "Agra",
+    "Meerut",
+
+    "Patna",
+    "Gaya",
+    "Muzaffarpur",
+
+    "Bhopal",
+    "Indore",
+    "Jabalpur",
+    "Gwalior",
+
+    "Raipur",
+    "Bilaspur",
+
+    "Bhubaneswar",
+    "Cuttack",
+
+    "Ranchi",
+    "Jamshedpur",
+
+    "Chandigarh",
+    "Amritsar",
+    "Ludhiana",
+
+    "Shimla",
+    "Dehradun",
+
+    "Srinagar",
+    "Jammu",
+
+    "Guwahati",
+    "Shillong",
+    "Agartala",
+
+    "Kochi",
+    "Thiruvananthapuram",
+    "Kozhikode",
+
+    "Visakhapatnam",
+    "Vijayawada",
+    "Tirupati",
+
+    "Panaji"
+]
 }
