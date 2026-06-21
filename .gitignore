@@ -14,6 +14,8 @@ data/load_metadata/*.json
 database/*
 database/weather.db
 
+powerbi/weather_dataset.csv
+
 .idea/
 .vscode/
 

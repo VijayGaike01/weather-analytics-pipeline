@@ -16,12 +16,16 @@ def test_no_duplicate_records():
         FROM (
             SELECT
                 city,
+                district,
+                division,
                 timestamp_utc,
                 ingestion_timestamp,
                 COUNT(*) AS cnt
             FROM weather_observations
             GROUP BY
                 city,
+                district,
+                division,
                 timestamp_utc,
                 ingestion_timestamp
             HAVING COUNT(*) > 1
