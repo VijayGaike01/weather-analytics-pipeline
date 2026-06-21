@@ -36,7 +36,7 @@ from pathlib import Path
 import pandas as pd
 
 # ── Shared definitions ────────────────────────────────────────────────────────
-from pipeline_config import DEFAULTS, get_logger, load_config
+from pipeline_config import DEFAULTS, get_logger, load_config, map_weather_code
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -100,52 +100,88 @@ def load_raw_json(filepath: str) -> dict:
 # Flatten / Build DataFrame
 # ─────────────────────────────────────────────────────────────────────────────
 
+def _iso_to_str(iso_ts: str | None) -> str | None:
+    """
+    'YYYY-MM-DDTHH:MM' (Open-Meteo, timezone=UTC) → 'YYYY-MM-DD HH:MM:SS'.
+    Matches the string format the OpenWeatherMap version produced via
+    datetime.utcfromtimestamp(...).strftime(...).
+    """
+    if not iso_ts:
+        return None
+    try:
+        return datetime.fromisoformat(iso_ts).strftime("%Y-%m-%d %H:%M:%S")
+    except (ValueError, TypeError):
+        return None
+
+
 def flatten_weather(record: dict) -> dict:
     """
-    Flatten a single city dict from the 'weather_data' list.
-    Temperatures are Celsius because the extractor uses units=metric.
+    Flatten a single city dict from the 'weather_data' list (Open-Meteo).
+
+    `record` is the normalised shape extract_weather.fetch_weather() writes:
+        {city, country, latitude, longitude, current: {...}, hourly: {...}, daily: {...}}
+
+    Temperatures are Celsius because the extractor requests temperature_unit=celsius.
+    Column names match the engineered columns in maharashtra_weather_pipeline.ipynb.
     """
+    current = record.get("current") or {}
+    hourly  = record.get("hourly")  or {}
+    daily   = record.get("daily")   or {}
+
+    weather_main, weather_desc, weather_id = map_weather_code(current.get("weather_code"))
+
+    # 'visibility' isn't in Open-Meteo's 'current' block — it's requested as
+    # an hourly variable instead, so pull out the entry whose timestamp
+    # matches current['time'].
+    visibility_m  = None
+    current_time  = current.get("time")
+    hourly_times  = hourly.get("time", [])
+    if current_time in hourly_times:
+        idx = hourly_times.index(current_time)
+        vis_values = hourly.get("visibility", [])
+        if idx < len(vis_values):
+            visibility_m = vis_values[idx]
+
+    daily_sunrise = (daily.get("sunrise") or [None])[0]
+    daily_sunset  = (daily.get("sunset") or [None])[0]
+    daily_tmin    = (daily.get("temperature_2m_min") or [None])[0]
+    daily_tmax    = (daily.get("temperature_2m_max") or [None])[0]
+
     return {
         # Identity
-        "city":               record.get("name"),
-        "country":            record.get("sys", {}).get("country"),
-        "latitude":           record.get("coord", {}).get("lat"),
-        "longitude":          record.get("coord", {}).get("lon"),
+        "city":               record.get("city"),
+        "country":            record.get("country"),
+        "latitude":           record.get("latitude"),
+        "longitude":          record.get("longitude"),
 
         # Time
-        "timestamp_utc":      datetime.utcfromtimestamp(
-                                  record.get("dt", 0)
-                              ).strftime("%Y-%m-%d %H:%M:%S"),
-        "sunrise_utc":        datetime.utcfromtimestamp(
-                                  record.get("sys", {}).get("sunrise", 0)
-                              ).strftime("%Y-%m-%d %H:%M:%S"),
-        "sunset_utc":         datetime.utcfromtimestamp(
-                                  record.get("sys", {}).get("sunset", 0)
-                              ).strftime("%Y-%m-%d %H:%M:%S"),
+        "timestamp_utc":      _iso_to_str(current_time),
+        "sunrise_utc":        _iso_to_str(daily_sunrise),
+        "sunset_utc":         _iso_to_str(daily_sunset),
 
-        # Weather condition
-        "weather_main":       record.get("weather", [{}])[0].get("main"),
-        "weather_desc":       record.get("weather", [{}])[0].get("description"),
-        "weather_id":         record.get("weather", [{}])[0].get("id"),
+        # Weather condition (WMO code mapped to an OWM-style category/id)
+        "weather_main":       weather_main,
+        "weather_desc":       weather_desc,
+        "weather_id":         weather_id,
 
         # Temperature (already Celsius from API)
-        "temp_celsius":       record.get("main", {}).get("temp"),
-        "feels_like_celsius": record.get("main", {}).get("feels_like"),
-        "temp_min_celsius":   record.get("main", {}).get("temp_min"),
-        "temp_max_celsius":   record.get("main", {}).get("temp_max"),
+        "temp_celsius":       current.get("temperature_2m"),
+        "feels_like_celsius": current.get("apparent_temperature"),
+        "temp_min_celsius":   daily_tmin,
+        "temp_max_celsius":   daily_tmax,
 
         # Atmosphere
-        "humidity_pct":       record.get("main", {}).get("humidity"),
-        "pressure_hpa":       record.get("main", {}).get("pressure"),
-        "visibility_m":       record.get("visibility"),
+        "humidity_pct":       current.get("relative_humidity_2m"),
+        "pressure_hpa":       current.get("pressure_msl"),
+        "visibility_m":       visibility_m,
 
         # Wind
-        "wind_speed_mps":     record.get("wind", {}).get("speed"),
-        "wind_deg":           record.get("wind", {}).get("deg"),
+        "wind_speed_mps":     current.get("wind_speed_10m"),
+        "wind_deg":           current.get("wind_direction_10m"),
 
         # Clouds & rain
-        "cloud_pct":          record.get("clouds", {}).get("all"),
-        "rain_1h_mm":         record.get("rain", {}).get("1h", 0.0),
+        "cloud_pct":          current.get("cloud_cover"),
+        "rain_1h_mm":         current.get("rain", 0.0),
     }
 
 

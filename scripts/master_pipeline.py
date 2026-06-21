@@ -3,7 +3,7 @@ master_pipeline.py
 ==================
 Centralised orchestrator for the Weather Analytics ETL pipeline.
 
-  Stage 1  EXTRACT   → OpenWeatherMap API  →  data/raw/*.json
+  Stage 1  EXTRACT   → Open-Meteo API     →  data/raw/*.json
   Stage 2  TRANSFORM → Flatten + enrich    →  data/processed/*.csv
   Stage 3  LOAD      → Insert into SQLite  →  database/weather.db
 
@@ -82,12 +82,15 @@ def setup_pipeline_logger() -> logging.Logger:
 
 def run_extract(config: dict, logger: logging.Logger) -> StageResult:
     """
-    Stage 1 — Fetch live weather data from OpenWeatherMap.
+    Stage 1 — Fetch live weather data from Open-Meteo (no API key required).
 
     Produces:  data/raw/weather_<timestamp>.json
     Returns:   StageResult.files_out = [path_to_raw_json]
     """
-    from extract_weather import build_session, fetch_weather, save_output
+    from extract_weather import (
+        build_session, fetch_weather, save_output,
+        load_geocode_cache, save_geocode_cache,
+    )
 
     result = StageResult(
         stage      = "extract",
@@ -95,30 +98,36 @@ def run_extract(config: dict, logger: logging.Logger) -> StageResult:
         started_at = datetime.now(tz=timezone.utc),
     )
 
-    timestamp  = datetime.now(tz=timezone.utc).strftime("%Y%m%d_%H%M%S")
-    api_key    = config["api_key"].strip()
-    cities     = [c.strip() for c in config["cities"]]
-    units      = config.get("units",                   DEFAULTS.units)
-    output_dir = config.get("output_dir",              DEFAULTS.raw_folder)
-    delay      = float(config.get("request_delay_seconds", DEFAULTS.request_delay_seconds))
+    timestamp          = datetime.now(tz=timezone.utc).strftime("%Y%m%d_%H%M%S")
+    cities              = [c.strip() for c in config["cities"]]
+    units               = config.get("units",                   DEFAULTS.units)
+    output_dir          = config.get("output_dir",              DEFAULTS.raw_folder)
+    delay               = float(config.get("request_delay_seconds", DEFAULTS.request_delay_seconds))
+    geocode_cache_file  = config.get("geocode_cache_file",      DEFAULTS.geocode_cache_file)
 
-    session = build_session(
+    session       = build_session(
         retries        = config.get("http_retries",        DEFAULTS.http_retries),
         backoff_factor = config.get("http_backoff_factor", DEFAULTS.http_backoff_factor),
         timeout        = config.get("http_timeout_seconds", DEFAULTS.http_timeout_seconds),
     )
+    geocode_cache = load_geocode_cache(geocode_cache_file)
 
     successful_cities: list[dict] = []
     failed_cities:     list[dict] = []
 
     for city in cities:
-        weather, err = fetch_weather(city, api_key, session, logger, units)
+        weather, err = fetch_weather(city, session, logger, geocode_cache, units)
         if weather:
             successful_cities.append(weather)
         else:
             failed_cities.append(err)
         if delay > 0:
             time.sleep(delay)
+
+    try:
+        save_geocode_cache(geocode_cache, geocode_cache_file)
+    except OSError as e:
+        logger.warning("Could not persist geocode cache: %s", e)
 
     if not successful_cities:
         return result.complete(
@@ -517,7 +526,7 @@ def parse_args() -> argparse.Namespace:
         epilog = """
 Stages
 ------
-  extract    Fetch from OpenWeatherMap API  →  data/raw/*.json
+  extract    Fetch from Open-Meteo API (no key)  →  data/raw/*.json
   transform  Flatten and enrich raw JSON   →  data/processed/*.csv
   load       Insert CSVs into SQLite DB    →  database/weather.db
 

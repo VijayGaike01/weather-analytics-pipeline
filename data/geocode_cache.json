@@ -1,0 +1,1082 @@
+{
+    "pune": {
+        "latitude": 18.51957,
+        "longitude": 73.85535,
+        "country": "IN"
+    },
+    "mumbai": {
+        "latitude": 19.07283,
+        "longitude": 72.88261,
+        "country": "IN"
+    },
+    "delhi": {
+        "latitude": 28.65195,
+        "longitude": 77.23149,
+        "country": "IN"
+    },
+    "bangalore": {
+        "latitude": 24.8717,
+        "longitude": 67.0839,
+        "country": "PK"
+    },
+    "hyderabad": {
+        "latitude": 17.38405,
+        "longitude": 78.45636,
+        "country": "IN"
+    },
+    "aurangabad": {
+        "latitude": 19.87757,
+        "longitude": 75.34226,
+        "country": "IN"
+    },
+    "shirpur": {
+        "latitude": 21.34821,
+        "longitude": 74.88035,
+        "country": "IN"
+    },
+    "amalner": {
+        "latitude": 21.03983,
+        "longitude": 75.05887,
+        "country": "IN"
+    },
+    "bhadgaon": {
+        "latitude": 20.66905,
+        "longitude": 75.22937,
+        "country": "IN"
+    },
+    "bhusawal": {
+        "latitude": 21.04365,
+        "longitude": 75.78506,
+        "country": "IN"
+    },
+    "chalisgaon": {
+        "latitude": 20.45781,
+        "longitude": 75.01596,
+        "country": "IN"
+    },
+    "chopda": {
+        "latitude": 21.24578,
+        "longitude": 75.29946,
+        "country": "IN"
+    },
+    "dharangaon": {
+        "latitude": 21.01187,
+        "longitude": 75.27407,
+        "country": "IN"
+    },
+    "erandol": {
+        "latitude": 20.92206,
+        "longitude": 75.32641,
+        "country": "IN"
+    },
+    "jalgaon": {
+        "latitude": 21.00292,
+        "longitude": 75.56602,
+        "country": "IN"
+    },
+    "pachora": {
+        "latitude": 20.66727,
+        "longitude": 75.35305,
+        "country": "IN"
+    },
+    "parola": {
+        "latitude": 61.04624,
+        "longitude": 24.35463,
+        "country": "FI"
+    },
+    "raver": {
+        "latitude": 21.24757,
+        "longitude": 76.03509,
+        "country": "IN"
+    },
+    "dhadgaon": {
+        "latitude": 21.82436,
+        "longitude": 74.21805,
+        "country": "IN"
+    },
+    "nandurbar": {
+        "latitude": 21.36671,
+        "longitude": 74.24051,
+        "country": "IN"
+    },
+    "shahada": {
+        "latitude": 21.54538,
+        "longitude": 74.47106,
+        "country": "IN"
+    },
+    "dahanu": {
+        "latitude": 19.96778,
+        "longitude": 72.71263,
+        "country": "IN"
+    },
+    "jawhar": {
+        "latitude": 2.78087,
+        "longitude": 45.50048,
+        "country": "SO"
+    },
+    "palghar": {
+        "latitude": 19.69693,
+        "longitude": 72.76543,
+        "country": "IN"
+    },
+    "vada": {
+        "latitude": 43.08333,
+        "longitude": -4.66667,
+        "country": "ES"
+    },
+    "vasai": {
+        "latitude": 27.01872,
+        "longitude": 67.72303,
+        "country": "PK"
+    },
+    "alibag": {
+        "latitude": 18.64813,
+        "longitude": 72.87579,
+        "country": "IN"
+    },
+    "karjat": {
+        "latitude": 18.9107,
+        "longitude": 73.32354,
+        "country": "IN"
+    },
+    "khalapur": {
+        "latitude": 18.82977,
+        "longitude": 73.28364,
+        "country": "IN"
+    },
+    "mahad": {
+        "latitude": 18.08333,
+        "longitude": 73.41667,
+        "country": "IN"
+    },
+    "mangaon": {
+        "latitude": 18.23155,
+        "longitude": 73.28613,
+        "country": "IN"
+    },
+    "mhasala": {
+        "latitude": 21.10989,
+        "longitude": 78.69374,
+        "country": "IN"
+    },
+    "murud": {
+        "latitude": 18.32817,
+        "longitude": 72.9621,
+        "country": "IN"
+    },
+    "panvel": {
+        "latitude": 18.98878,
+        "longitude": 73.11013,
+        "country": "IN"
+    },
+    "pen": {
+        "latitude": 5.41123,
+        "longitude": 100.33543,
+        "country": "MY"
+    },
+    "roha": {
+        "latitude": 18.43687,
+        "longitude": 73.11964,
+        "country": "IN"
+    },
+    "shrivardhan": {
+        "latitude": 18.05318,
+        "longitude": 73.0011,
+        "country": "IN"
+    },
+    "tala": {
+        "latitude": 42.89799,
+        "longitude": 71.37334,
+        "country": "KZ"
+    },
+    "uran": {
+        "latitude": 18.87813,
+        "longitude": 72.93924,
+        "country": "IN"
+    },
+    "chiplun": {
+        "latitude": 17.53339,
+        "longitude": 73.50935,
+        "country": "IN"
+    },
+    "guhagar": {
+        "latitude": 17.48415,
+        "longitude": 73.19289,
+        "country": "IN"
+    },
+    "khed": {
+        "latitude": 17.71888,
+        "longitude": 73.39693,
+        "country": "IN"
+    },
+    "lanja": {
+        "latitude": 16.86086,
+        "longitude": 73.54993,
+        "country": "IN"
+    },
+    "rajapur": {
+        "latitude": 25.389,
+        "longitude": 81.145,
+        "country": "IN"
+    },
+    "ratnagiri": {
+        "latitude": 16.99154,
+        "longitude": 73.31022,
+        "country": "IN"
+    },
+    "kankavli": {
+        "latitude": 16.26609,
+        "longitude": 73.71217,
+        "country": "IN"
+    },
+    "kudal": {
+        "latitude": 16.01148,
+        "longitude": 73.68867,
+        "country": "IN"
+    },
+    "vengurla": {
+        "latitude": 15.86125,
+        "longitude": 73.63182,
+        "country": "IN"
+    },
+    "ambarnath": {
+        "latitude": 19.2,
+        "longitude": 73.16667,
+        "country": "IN"
+    },
+    "bhiwandi": {
+        "latitude": 19.30023,
+        "longitude": 73.05881,
+        "country": "IN"
+    },
+    "kalyan": {
+        "latitude": 19.2437,
+        "longitude": 73.13554,
+        "country": "IN"
+    },
+    "murbad": {
+        "latitude": 19.25395,
+        "longitude": 73.38993,
+        "country": "IN"
+    },
+    "shahapur": {
+        "latitude": 19.45231,
+        "longitude": 73.32572,
+        "country": "IN"
+    },
+    "thane": {
+        "latitude": 19.19704,
+        "longitude": 72.96355,
+        "country": "IN"
+    },
+    "ulhasnagar": {
+        "latitude": 19.21667,
+        "longitude": 73.15,
+        "country": "IN"
+    },
+    "gangapur": {
+        "latitude": 26.47249,
+        "longitude": 76.71744,
+        "country": "IN"
+    },
+    "kannad": {
+        "latitude": 20.25684,
+        "longitude": 75.13786,
+        "country": "IN"
+    },
+    "khuldabad": {
+        "latitude": 20.00671,
+        "longitude": 75.19245,
+        "country": "IN"
+    },
+    "paithan": {
+        "latitude": 19.47506,
+        "longitude": 75.38558,
+        "country": "IN"
+    },
+    "sillod": {
+        "latitude": 20.30303,
+        "longitude": 75.65284,
+        "country": "IN"
+    },
+    "vaijapur": {
+        "latitude": 19.92672,
+        "longitude": 74.7275,
+        "country": "IN"
+    },
+    "ambajogai": {
+        "latitude": 18.73312,
+        "longitude": 76.38616,
+        "country": "IN"
+    },
+    "ashti": {
+        "latitude": 19.37671,
+        "longitude": 76.2252,
+        "country": "IN"
+    },
+    "dharur": {
+        "latitude": 18.82017,
+        "longitude": 76.10937,
+        "country": "IN"
+    },
+    "majalgaon": {
+        "latitude": 19.15513,
+        "longitude": 76.20992,
+        "country": "IN"
+    },
+    "parli": {
+        "latitude": 18.85057,
+        "longitude": 76.53163,
+        "country": "IN"
+    },
+    "bhum": {
+        "latitude": 31.73214,
+        "longitude": 74.07039,
+        "country": "PK"
+    },
+    "kalamb": {
+        "latitude": 19.04437,
+        "longitude": 73.95554,
+        "country": "IN"
+    },
+    "paranda": {
+        "latitude": 18.26321,
+        "longitude": 75.46316,
+        "country": "IN"
+    },
+    "tuljapur": {
+        "latitude": 18.00804,
+        "longitude": 76.07011,
+        "country": "IN"
+    },
+    "umarga": {
+        "latitude": 17.83841,
+        "longitude": 76.62331,
+        "country": "IN"
+    },
+    "washi": {
+        "latitude": 29.30655,
+        "longitude": 104.96088,
+        "country": "CN"
+    },
+    "basmath": {
+        "latitude": 19.32872,
+        "longitude": 77.15746,
+        "country": "IN"
+    },
+    "hingoli": {
+        "latitude": 19.71464,
+        "longitude": 77.14238,
+        "country": "IN"
+    },
+    "kalamnuri": {
+        "latitude": 19.67386,
+        "longitude": 77.31149,
+        "country": "IN"
+    },
+    "sengaon": {
+        "latitude": 25.71988,
+        "longitude": 88.49645,
+        "country": "BD"
+    },
+    "ambad": {
+        "latitude": 19.61301,
+        "longitude": 75.78906,
+        "country": "IN"
+    },
+    "badnapur": {
+        "latitude": 19.86803,
+        "longitude": 75.72552,
+        "country": "IN"
+    },
+    "jalna": {
+        "latitude": 19.84102,
+        "longitude": 75.88636,
+        "country": "IN"
+    },
+    "mantha": {
+        "latitude": 19.64937,
+        "longitude": 76.38716,
+        "country": "IN"
+    },
+    "partur": {
+        "latitude": 19.59925,
+        "longitude": 76.21541,
+        "country": "IN"
+    },
+    "ahmedpur": {
+        "latitude": 25.48731,
+        "longitude": 89.36931,
+        "country": "BD"
+    },
+    "ausa": {
+        "latitude": 18.24728,
+        "longitude": 76.4993,
+        "country": "IN"
+    },
+    "latur": {
+        "latitude": 18.39721,
+        "longitude": 76.56784,
+        "country": "IN"
+    },
+    "nilanga": {
+        "latitude": 18.11675,
+        "longitude": 76.75279,
+        "country": "IN"
+    },
+    "renapur": {
+        "latitude": 18.5264,
+        "longitude": 76.59775,
+        "country": "IN"
+    },
+    "udgir": {
+        "latitude": 18.39258,
+        "longitude": 77.11756,
+        "country": "IN"
+    },
+    "biloli": {
+        "latitude": 18.77385,
+        "longitude": 77.72463,
+        "country": "IN"
+    },
+    "dharmabad": {
+        "latitude": 18.89116,
+        "longitude": 77.8494,
+        "country": "IN"
+    },
+    "hadgaon": {
+        "latitude": 19.49552,
+        "longitude": 77.65863,
+        "country": "IN"
+    },
+    "himayatnagar": {
+        "latitude": 17.34235,
+        "longitude": 78.30737,
+        "country": "IN"
+    },
+    "kandhar": {
+        "latitude": 33.8877,
+        "longitude": 46.8756,
+        "country": "IR"
+    },
+    "kinwat": {
+        "latitude": 19.62557,
+        "longitude": 78.1987,
+        "country": "IN"
+    },
+    "mahur": {
+        "latitude": 25.18305,
+        "longitude": 93.11342,
+        "country": "IN"
+    },
+    "mudkhed": {
+        "latitude": 19.15657,
+        "longitude": 77.50304,
+        "country": "IN"
+    },
+    "mukhed": {
+        "latitude": 18.4685,
+        "longitude": 77.28466,
+        "country": "IN"
+    },
+    "naigaon": {
+        "latitude": 24.93486,
+        "longitude": 90.54993,
+        "country": "BD"
+    },
+    "umri": {
+        "latitude": 19.0391,
+        "longitude": 77.64539,
+        "country": "IN"
+    },
+    "gangakhed": {
+        "latitude": 24.04267,
+        "longitude": 75.43156,
+        "country": "IN"
+    },
+    "jintur": {
+        "latitude": 19.61186,
+        "longitude": 76.6874,
+        "country": "IN"
+    },
+    "manwath": {
+        "latitude": 19.30133,
+        "longitude": 76.49735,
+        "country": "IN"
+    },
+    "palam": {
+        "latitude": 36.92338,
+        "longitude": 50.23752,
+        "country": "IR"
+    },
+    "parbhani": {
+        "latitude": 19.26855,
+        "longitude": 76.77081,
+        "country": "IN"
+    },
+    "pathri": {
+        "latitude": 19.2588,
+        "longitude": 76.43412,
+        "country": "IN"
+    },
+    "purna": {
+        "latitude": 19.1817,
+        "longitude": 77.02566,
+        "country": "IN"
+    },
+    "ahmednagar": {
+        "latitude": 23.59893,
+        "longitude": 72.96602,
+        "country": "IN"
+    },
+    "kopargaon": {
+        "latitude": 19.88239,
+        "longitude": 74.47605,
+        "country": "IN"
+    },
+    "nagar": {
+        "latitude": 36.27542,
+        "longitude": 74.71959,
+        "country": "PK"
+    },
+    "parner": {
+        "latitude": 19.00281,
+        "longitude": 74.43844,
+        "country": "IN"
+    },
+    "pathardi": {
+        "latitude": 19.17279,
+        "longitude": 75.17425,
+        "country": "IN"
+    },
+    "rahuri": {
+        "latitude": 19.39069,
+        "longitude": 74.64979,
+        "country": "IN"
+    },
+    "sangamner": {
+        "latitude": 19.56784,
+        "longitude": 74.21154,
+        "country": "IN"
+    },
+    "shevgaon": {
+        "latitude": 19.35333,
+        "longitude": 75.21999,
+        "country": "IN"
+    },
+    "shrigonda": {
+        "latitude": 18.61527,
+        "longitude": 74.69895,
+        "country": "IN"
+    },
+    "shrirampur": {
+        "latitude": 22.75278,
+        "longitude": 88.34222,
+        "country": "IN"
+    },
+    "baglan": {
+        "latitude": 38.32921,
+        "longitude": 40.7122,
+        "country": "TR"
+    },
+    "dindori": {
+        "latitude": 22.94141,
+        "longitude": 81.07975,
+        "country": "IN"
+    },
+    "igatpuri": {
+        "latitude": 19.69522,
+        "longitude": 73.5626,
+        "country": "IN"
+    },
+    "kalwan": {
+        "latitude": 34.88513,
+        "longitude": 73.93061,
+        "country": "PK"
+    },
+    "malegaon": {
+        "latitude": 20.54966,
+        "longitude": 74.53462,
+        "country": "IN"
+    },
+    "nandgaon": {
+        "latitude": 20.3068,
+        "longitude": 74.65501,
+        "country": "IN"
+    },
+    "nashik": {
+        "latitude": 19.99727,
+        "longitude": 73.79096,
+        "country": "IN"
+    },
+    "sinnar": {
+        "latitude": 19.84505,
+        "longitude": 73.99866,
+        "country": "IN"
+    },
+    "surgana": {
+        "latitude": 20.55956,
+        "longitude": 73.63747,
+        "country": "IN"
+    },
+    "yeola": {
+        "latitude": 20.0424,
+        "longitude": 74.48944,
+        "country": "IN"
+    },
+    "akola": {
+        "latitude": 20.70957,
+        "longitude": 76.9981,
+        "country": "IN"
+    },
+    "akot": {
+        "latitude": 21.0963,
+        "longitude": 77.0588,
+        "country": "IN"
+    },
+    "balapur": {
+        "latitude": 20.66612,
+        "longitude": 76.77386,
+        "country": "IN"
+    },
+    "murtajapur": {
+        "latitude": 20.73299,
+        "longitude": 77.36694,
+        "country": "IN"
+    },
+    "patur": {
+        "latitude": 20.46093,
+        "longitude": 76.93725,
+        "country": "IN"
+    },
+    "telhara": {
+        "latitude": 21.02694,
+        "longitude": 76.83889,
+        "country": "IN"
+    },
+    "achalpur": {
+        "latitude": 21.25665,
+        "longitude": 77.51006,
+        "country": "IN"
+    },
+    "amravati": {
+        "latitude": 20.93333,
+        "longitude": 77.75,
+        "country": "IN"
+    },
+    "chandur": {
+        "latitude": 41.56667,
+        "longitude": 25.1,
+        "country": "BG"
+    },
+    "daryapur": {
+        "latitude": 20.92489,
+        "longitude": 77.32644,
+        "country": "IN"
+    },
+    "dhamangaon": {
+        "latitude": 20.67396,
+        "longitude": 76.03388,
+        "country": "IN"
+    },
+    "dharni": {
+        "latitude": 21.55333,
+        "longitude": 76.88972,
+        "country": "IN"
+    },
+    "morshi": {
+        "latitude": 21.14152,
+        "longitude": 78.45447,
+        "country": "IN"
+    },
+    "warud": {
+        "latitude": 21.47101,
+        "longitude": 78.26965,
+        "country": "IN"
+    },
+    "bhandara": {
+        "latitude": 21.16817,
+        "longitude": 79.64885,
+        "country": "IN"
+    },
+    "tumsar": {
+        "latitude": 21.38333,
+        "longitude": 79.73333,
+        "country": "IN"
+    },
+    "chikhli": {
+        "latitude": 20.35046,
+        "longitude": 76.25774,
+        "country": "IN"
+    },
+    "deulgaon raja": {
+        "latitude": 20.01757,
+        "longitude": 76.03755,
+        "country": "IN"
+    },
+    "jalgaon jamod": {
+        "latitude": 21.05194,
+        "longitude": 76.53464,
+        "country": "IN"
+    },
+    "khamgaon": {
+        "latitude": 20.70738,
+        "longitude": 76.56827,
+        "country": "IN"
+    },
+    "lonar": {
+        "latitude": 19.98533,
+        "longitude": 76.52046,
+        "country": "IN"
+    },
+    "malkapur": {
+        "latitude": 20.88555,
+        "longitude": 76.19932,
+        "country": "IN"
+    },
+    "mehkar": {
+        "latitude": 20.1505,
+        "longitude": 76.56841,
+        "country": "IN"
+    },
+    "motala": {
+        "latitude": 58.53706,
+        "longitude": 15.03649,
+        "country": "SE"
+    },
+    "nandura": {
+        "latitude": 20.83417,
+        "longitude": 76.45924,
+        "country": "IN"
+    },
+    "sangrampur": {
+        "latitude": 24.6739,
+        "longitude": 87.84676,
+        "country": "IN"
+    },
+    "shegaon": {
+        "latitude": 20.7932,
+        "longitude": 76.69921,
+        "country": "IN"
+    },
+    "ballarpur": {
+        "latitude": 19.84696,
+        "longitude": 79.34578,
+        "country": "IN"
+    },
+    "bhadravati": {
+        "latitude": 13.84846,
+        "longitude": 75.70502,
+        "country": "IN"
+    },
+    "chandrapur": {
+        "latitude": 19.95076,
+        "longitude": 79.29523,
+        "country": "IN"
+    },
+    "mul": {
+        "latitude": 20.06987,
+        "longitude": 79.67826,
+        "country": "IN"
+    },
+    "rajura": {
+        "latitude": 18.70622,
+        "longitude": 76.93731,
+        "country": "IN"
+    },
+    "warora": {
+        "latitude": 20.22885,
+        "longitude": 79.00277,
+        "country": "IN"
+    },
+    "aheri": {
+        "latitude": -3.5673,
+        "longitude": 141.1892,
+        "country": "PG"
+    },
+    "dhanora": {
+        "latitude": 23.61547,
+        "longitude": 76.53052,
+        "country": "IN"
+    },
+    "amgaon": {
+        "latitude": 20.64297,
+        "longitude": 79.95352,
+        "country": "IN"
+    },
+    "deori": {
+        "latitude": 23.39017,
+        "longitude": 79.0163,
+        "country": "IN"
+    },
+    "gondia": {
+        "latitude": 21.46026,
+        "longitude": 80.19205,
+        "country": "IN"
+    },
+    "goregaon": {
+        "latitude": 18.15483,
+        "longitude": 73.29147,
+        "country": "IN"
+    },
+    "katol": {
+        "latitude": 21.27388,
+        "longitude": 78.5858,
+        "country": "IN"
+    },
+    "ramtek": {
+        "latitude": 21.39562,
+        "longitude": 79.32725,
+        "country": "IN"
+    },
+    "umred": {
+        "latitude": 20.85396,
+        "longitude": 79.32466,
+        "country": "IN"
+    },
+    "arvi": {
+        "latitude": 20.99585,
+        "longitude": 78.22914,
+        "country": "IN"
+    },
+    "deoli": {
+        "latitude": 28.50254,
+        "longitude": 77.23117,
+        "country": "IN"
+    },
+    "hinganghat": {
+        "latitude": 20.54875,
+        "longitude": 78.83978,
+        "country": "IN"
+    },
+    "karanja": {
+        "latitude": 20.48273,
+        "longitude": 77.48857,
+        "country": "IN"
+    },
+    "wardha": {
+        "latitude": 20.73933,
+        "longitude": 78.59784,
+        "country": "IN"
+    },
+    "manora": {
+        "latitude": 20.21874,
+        "longitude": 77.55909,
+        "country": "IN"
+    },
+    "risod": {
+        "latitude": 19.97671,
+        "longitude": 76.78799,
+        "country": "IN"
+    },
+    "washim": {
+        "latitude": 20.11128,
+        "longitude": 77.133,
+        "country": "IN"
+    },
+    "arni": {
+        "latitude": 46.93519,
+        "longitude": 7.66473,
+        "country": "CH"
+    },
+    "darwha": {
+        "latitude": 20.31017,
+        "longitude": 77.77257,
+        "country": "IN"
+    },
+    "digras": {
+        "latitude": 20.1035,
+        "longitude": 77.71846,
+        "country": "IN"
+    },
+    "ghatanji": {
+        "latitude": 20.14183,
+        "longitude": 78.31333,
+        "country": "IN"
+    },
+    "maregaon": {
+        "latitude": 20.10495,
+        "longitude": 78.80688,
+        "country": "IN"
+    },
+    "pusad": {
+        "latitude": 19.91274,
+        "longitude": 77.57838,
+        "country": "IN"
+    },
+    "ralegaon": {
+        "latitude": 20.42389,
+        "longitude": 78.52111,
+        "country": "IN"
+    },
+    "umarkhed": {
+        "latitude": 19.60144,
+        "longitude": 77.68878,
+        "country": "IN"
+    },
+    "wani": {
+        "latitude": 20.05507,
+        "longitude": 78.95313,
+        "country": "IN"
+    },
+    "yavatmal": {
+        "latitude": 20.39324,
+        "longitude": 78.13201,
+        "country": "IN"
+    },
+    "ajra": {
+        "latitude": 16.11601,
+        "longitude": 74.21097,
+        "country": "IN"
+    },
+    "chandgad": {
+        "latitude": 15.94277,
+        "longitude": 74.18241,
+        "country": "IN"
+    },
+    "gadhinglaj": {
+        "latitude": 16.22291,
+        "longitude": 74.3501,
+        "country": "IN"
+    },
+    "kagal": {
+        "latitude": 16.57702,
+        "longitude": 74.31544,
+        "country": "IN"
+    },
+    "panhala": {
+        "latitude": 16.8121,
+        "longitude": 74.11007,
+        "country": "IN"
+    },
+    "baramati": {
+        "latitude": 18.15174,
+        "longitude": 74.57767,
+        "country": "IN"
+    },
+    "bhor": {
+        "latitude": 18.14861,
+        "longitude": 73.84336,
+        "country": "IN"
+    },
+    "daund": {
+        "latitude": 18.46515,
+        "longitude": 74.58375,
+        "country": "IN"
+    },
+    "indapur": {
+        "latitude": 18.3,
+        "longitude": 73.25,
+        "country": "IN"
+    },
+    "junnar": {
+        "latitude": 19.20815,
+        "longitude": 73.8752,
+        "country": "IN"
+    },
+    "shirur": {
+        "latitude": 16.87713,
+        "longitude": 74.92554,
+        "country": "IN"
+    },
+    "atpadi": {
+        "latitude": 17.42241,
+        "longitude": 74.93878,
+        "country": "IN"
+    },
+    "jat": {
+        "latitude": 25.87779,
+        "longitude": 62.37059,
+        "country": "PK"
+    },
+    "khanapur": {
+        "latitude": 15.63969,
+        "longitude": 74.50847,
+        "country": "IN"
+    },
+    "shirala": {
+        "latitude": 16.98572,
+        "longitude": 74.12639,
+        "country": "IN"
+    },
+    "tasgaon": {
+        "latitude": 17.037,
+        "longitude": 74.60171,
+        "country": "IN"
+    },
+    "walwa": {
+        "latitude": -35.9659,
+        "longitude": 147.73401,
+        "country": "AU"
+    },
+    "karad": {
+        "latitude": 17.28937,
+        "longitude": 74.18183,
+        "country": "IN"
+    },
+    "khandala": {
+        "latitude": 20.01987,
+        "longitude": 74.79839,
+        "country": "IN"
+    },
+    "koregaon": {
+        "latitude": 18.64573,
+        "longitude": 74.05909,
+        "country": "IN"
+    },
+    "mahabaleshwar": {
+        "latitude": 17.56,
+        "longitude": 73.4,
+        "country": "IN"
+    },
+    "man": {
+        "latitude": 53.48095,
+        "longitude": -2.23743,
+        "country": "GB"
+    },
+    "patan": {
+        "latitude": 27.67658,
+        "longitude": 85.31417,
+        "country": "NP"
+    },
+    "phaltan": {
+        "latitude": 17.99113,
+        "longitude": 74.43177,
+        "country": "IN"
+    },
+    "satara": {
+        "latitude": 17.68589,
+        "longitude": 73.99333,
+        "country": "IN"
+    },
+    "wai": {
+        "latitude": -14.87959,
+        "longitude": 47.98751,
+        "country": "MG"
+    },
+    "barshi": {
+        "latitude": 18.23454,
+        "longitude": 75.69275,
+        "country": "IN"
+    },
+    "karmala": {
+        "latitude": 18.4077,
+        "longitude": 75.19386,
+        "country": "IN"
+    },
+    "pandharpur": {
+        "latitude": 17.67924,
+        "longitude": 75.33098,
+        "country": "IN"
+    },
+    "sangole": {
+        "latitude": -10.86917,
+        "longitude": 40.28806,
+        "country": "MZ"
+    },
+    "sangola": {
+        "latitude": 17.43948,
+        "longitude": 75.19379,
+        "country": "IN"
+    }
+}

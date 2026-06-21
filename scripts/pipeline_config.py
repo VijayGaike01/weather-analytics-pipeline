@@ -34,7 +34,7 @@ from typing import Optional
 
 STAGE_ORDER: list[str] = ["extract", "transform", "load"]
 
-REQUIRED_CONFIG_KEYS: frozenset[str] = frozenset({"api_key", "cities"})
+REQUIRED_CONFIG_KEYS: frozenset[str] = frozenset({"cities"})
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -53,16 +53,18 @@ class Defaults:
     database_file:    str = "database/weather.db"
     sql_file:         str = "sql/create_tables.sql"
     load_metadata_file: str = "data/load_metadata/loaded_files.json"
+    geocode_cache_file: str = "data/geocode_cache.json"
 
     # Extract
-    units:                str   = "metric"
+    units:                str   = "metric"   # informational only — see extract_weather.py
     request_delay_seconds: float = 0.2
     http_retries:         int   = 3
     http_backoff_factor:  float = 0.5
     http_timeout_seconds: int   = 10
 
-    # OpenWeather
-    openweather_base_url: str = "https://api.openweathermap.org/data/2.5/weather"
+    # Open-Meteo (no API key required)
+    geocoding_base_url: str = "https://geocoding-api.open-meteo.com/v1/search"
+    forecast_base_url:  str = "https://api.open-meteo.com/v1/forecast"
 
 
 DEFAULTS = Defaults()
@@ -135,9 +137,6 @@ def load_config(config_path: str = DEFAULTS.config_file) -> dict:
     if missing:
         raise ValueError(f"Config is missing required keys: {missing}")
 
-    if not isinstance(config["api_key"], str) or not config["api_key"].strip():
-        raise ValueError("Config 'api_key' must be a non-empty string.")
-
     if not isinstance(config["cities"], list) or not config["cities"]:
         raise ValueError("Config 'cities' must be a non-empty list.")
 
@@ -199,12 +198,72 @@ def get_logger(
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# OpenWeather error map  — shared by extract_weather and (if needed) tests
+# Open-Meteo error map  — shared by extract_weather and (if needed) tests
 # ─────────────────────────────────────────────────────────────────────────────
 
-OPENWEATHER_ERROR_MESSAGES: dict[int, str] = {
-    401: "Invalid or missing API key.",
-    404: "City not found.",
-    429: "API rate limit exceeded.",
-    500: "OpenWeatherMap server error.",
+OPEN_METEO_ERROR_MESSAGES: dict[int, str] = {
+    400: "Invalid request parameters (bad coordinates or variable name).",
+    404: "Endpoint not found.",
+    429: "Open-Meteo rate limit exceeded.",
+    500: "Open-Meteo server error.",
+    502: "Open-Meteo gateway error.",
+    503: "Open-Meteo service temporarily unavailable.",
 }
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# WMO weather_code → OWM-style (main, description, id)
+# ─────────────────────────────────────────────────────────────────────────────
+# Open-Meteo reports the WMO 4677 weather code, not OpenWeatherMap's own
+# condition IDs. This table maps WMO codes onto OWM-style categories/ids so
+# downstream columns (weather_main / weather_desc / weather_id) and the
+# WEATHER_SEVERITY_MAP in transform.py keep working unchanged. Ported from
+# maharashtra_weather_pipeline.ipynb — these are close analogues, not
+# official OWM ids.
+# ─────────────────────────────────────────────────────────────────────────────
+
+WMO_CODE_MAP: dict[int, tuple[str, str, int]] = {
+    0:  ("Clear",        "clear sky",                     800),
+    1:  ("Clear",        "mainly clear",                  801),
+    2:  ("Clouds",       "partly cloudy",                 802),
+    3:  ("Clouds",       "overcast",                       804),
+    45: ("Fog",          "fog",                            741),
+    48: ("Fog",          "depositing rime fog",            741),
+    51: ("Drizzle",      "light drizzle",                  300),
+    53: ("Drizzle",      "moderate drizzle",               301),
+    55: ("Drizzle",      "dense drizzle",                  302),
+    56: ("Drizzle",      "light freezing drizzle",         311),
+    57: ("Drizzle",      "dense freezing drizzle",         312),
+    61: ("Rain",         "slight rain",                    500),
+    63: ("Rain",         "moderate rain",                  501),
+    65: ("Rain",         "heavy rain",                     502),
+    66: ("Rain",         "light freezing rain",            511),
+    67: ("Rain",         "heavy freezing rain",            511),
+    71: ("Snow",         "slight snow fall",                600),
+    73: ("Snow",         "moderate snow fall",              601),
+    75: ("Snow",         "heavy snow fall",                 602),
+    77: ("Snow",         "snow grains",                     612),
+    80: ("Rain",         "slight rain showers",             520),
+    81: ("Rain",         "moderate rain showers",           521),
+    82: ("Rain",         "violent rain showers",            522),
+    85: ("Snow",         "slight snow showers",             620),
+    86: ("Snow",         "heavy snow showers",              622),
+    95: ("Thunderstorm", "thunderstorm",                    211),
+    96: ("Thunderstorm", "thunderstorm with slight hail",   230),
+    99: ("Thunderstorm", "thunderstorm with heavy hail",    232),
+}
+
+
+def map_weather_code(code) -> tuple[str, str, int]:
+    """
+    Translate a WMO weather_code into (weather_main, weather_desc, weather_id).
+
+    Returns ("Unknown", "unknown", 900) for None/unrecognised codes, mirroring
+    the fallback used in the historical-backfill notebook.
+    """
+    if code is None:
+        return ("Unknown", "unknown", 900)
+    try:
+        return WMO_CODE_MAP.get(int(code), ("Unknown", f"unmapped code {code}", 900))
+    except (TypeError, ValueError):
+        return ("Unknown", "unknown", 900)
