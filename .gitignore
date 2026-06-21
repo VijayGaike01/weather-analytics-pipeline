@@ -12,7 +12,7 @@ data/processed_metadata/*.json
 data/load_metadata/*.json
 
 database/*
-!database/weather.db
+database/weather.db
 
 .idea/
 .vscode/
