@@ -13,6 +13,9 @@ CREATE TABLE IF NOT EXISTS weather_observations (
     observation_id INTEGER PRIMARY KEY AUTOINCREMENT,
 
     city TEXT NOT NULL,
+    district TEXT,
+    division TEXT,
+    region   TEXT,
     country TEXT,
 
     latitude REAL,

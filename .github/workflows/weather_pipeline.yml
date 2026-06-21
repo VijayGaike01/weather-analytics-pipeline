@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: '0 */2 * * *' 
+    - cron: '0 */12 * * *' 
 
 permissions:
   contents: write
@@ -30,6 +30,9 @@ jobs:
 
       - name: Create config.json
         run: cp config/config_template.json config/config.json
+    
+      - name: Inject API Key
+        run: sed -i "s/OPENWEATHER_API_KEY/${{ secrets.OPENWEATHER_API_KEY }}/g" config/config.json
 
       - name: Run Pipeline
         run: python scripts/master_pipeline.py

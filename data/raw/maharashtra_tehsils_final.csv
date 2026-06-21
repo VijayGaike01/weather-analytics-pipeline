@@ -1,0 +1,225 @@
+﻿tehsil,district,division,region,city_id,city_name,state,country,lat,lon,csv_lat,csv_lon,match_type
+Shirpur,Dhule,Nashik,Khandesh,1256475.0,Shirpur,,IN,21.35,74.883331,,,exact
+Amalner,Jalgaon,Nashik,Khandesh,1278931.0,Amalner,,IN,21.049999,75.066673,,,exact
+Bhadgaon,Jalgaon,Nashik,Khandesh,1270554.0,Bhadgaon,Maharashtra,IN,20.8167,75.2333,,,manual_correction
+Bhusawal,Jalgaon,Nashik,Khandesh,1275778.0,Bhusāval,,IN,21.049999,75.76667,21.03333,75.78333,fuzzy(87.5)
+Chalisgaon,Jalgaon,Nashik,Khandesh,1274868.0,Chālisgaon,,IN,20.466669,75.01667,20.55,75.16667,exact
+Chopda,Jalgaon,Nashik,Khandesh,1273992.0,Chopda,,IN,21.25,75.300003,21.25,75.33333,exact
+Dharangaon,Jalgaon,Nashik,Khandesh,1272874.0,Dharangaon,,IN,21.01667,75.26667,,,exact
+Erandol,Jalgaon,Nashik,Khandesh,1272025.0,Erandol,,IN,20.91667,75.333328,,,exact
+Jalgaon,Jalgaon,Nashik,Khandesh,1269407.0,Jalgaon,,IN,21.01667,75.566673,21.08333,75.66667,exact
+Pachora,Jalgaon,Nashik,Khandesh,1260959.0,Pāchora,,IN,20.66667,75.349998,20.63333,75.48333,exact
+Parola,Jalgaon,Nashik,Khandesh,1260274.0,Parola,,IN,20.883329,75.116669,,,exact
+Raver,Jalgaon,Nashik,Khandesh,1258307.0,Rāver,,IN,21.25,76.033333,,,exact
+Dhadgaon,Nandurbar,Nashik,Khandesh,1270554.0,Dhadgaon,Maharashtra,IN,21.5667,74.0,,,manual_correction
+Nandurbar,Nandurbar,Nashik,Khandesh,1261931.0,Nandurbar,,IN,21.366671,74.25,21.38333,74.31667,exact
+Shahada,Nandurbar,Nashik,Khandesh,1256750.0,Shāhāda,,IN,21.549999,74.466667,,,exact
+Dahanu,Palghar,Konkan,Konkan,1273708.0,Dāhānu,,IN,19.966669,72.73333,,,exact
+Jawhar,Palghar,Konkan,Konkan,1269106.0,Jawhār,,IN,19.91667,73.23333,19.86667,73.35,exact
+Palghar,Palghar,Konkan,Konkan,1260730.0,Pālghar,,IN,19.683331,72.75,,,exact
+Vada,Palghar,Konkan,Konkan,1253610.0,Vāda,,IN,19.65,73.133331,,,exact
+Vasai,Palghar,Konkan,Konkan,1253372.0,Vasai,,IN,19.47,72.8,,,exact
+Alibag,Raigad,Konkan,Konkan,1279027.0,Alībāg,,IN,18.641109,72.879173,18.65,72.91667,exact
+Karjat,Raigad,Konkan,Konkan,1267742.0,Karjat,,IN,18.91667,73.333328,,,exact
+Khalapur,Raigad,Konkan,Konkan,1267065.0,Khalapur,Maharashtra,IN,18.8167,73.2667,,,manual_correction
+Mahad,Raigad,Konkan,Konkan,1264489.0,Mahād,,IN,18.08333,73.416672,,,exact
+Mangaon,Raigad,Konkan,Konkan,1263776.0,Mangaon,Maharashtra,IN,18.1833,73.3333,18.25,73.33333,manual_correction
+Mhasala,Raigad,Konkan,Konkan,1263087.0,Mhasla,,IN,18.133329,73.116669,,,fuzzy(92.3076923076923)
+Murud,Raigad,Konkan,Konkan,1262403.0,Murud,,IN,18.32583,72.964996,18.3,72.98333,exact
+Panvel,Raigad,Konkan,Konkan,1260434.0,Panvel,,IN,18.98333,73.099998,,,exact
+Pen,Raigad,Konkan,Konkan,1259931.0,Pen,,IN,18.75,73.083328,,,exact
+Roha,Raigad,Konkan,Konkan,1258098.0,Roha,Maharashtra,IN,18.4333,73.1167,,,manual_correction
+Shrivardhan,Raigad,Konkan,Konkan,1255619.0,Srīvardhan,,IN,18.033331,73.01667,,,fuzzy(95.23809523809523)
+Tala,Raigad,Konkan,Konkan,1255187.0,Tala,Maharashtra,IN,18.2833,73.05,,,manual_correction
+Uran,Raigad,Konkan,Konkan,1253702.0,Uran,,IN,18.87694,72.93972,,,exact
+Chiplun,Ratnagiri,Konkan,Konkan,1274119.0,Chiplūn,,IN,17.533331,73.51667,,,exact
+Guhagar,Ratnagiri,Konkan,Konkan,1270779.0,Guhāgar,,IN,17.48415,73.192886,,,exact
+Khed,Ratnagiri,Konkan,Konkan,1266813.0,Khed,,IN,17.72,73.38,18.85,73.93333,manual_correction
+Lanja,Ratnagiri,Konkan,Konkan,1265085.0,Lānja,,IN,16.85,73.550003,,,exact
+Rajapur,Ratnagiri,Konkan,Konkan,1258911.0,Rajapur,Maharashtra,IN,16.65,73.5167,16.65,73.55,manual_correction
+Ratnagiri,Ratnagiri,Konkan,Konkan,1258338.0,Ratnagiri,,IN,16.98333,73.300003,17.13333,73.31667,exact
+Kankavli,Sindhudurg,Konkan,Konkan,1268035.0,Kankavli,,IN,16.26667,73.699997,,,fuzzy(87.5)
+Kudal,Sindhudurg,Konkan,Konkan,1265809.0,Kudāl,,IN,16.033331,73.683327,,,exact
+Vengurla,Sindhudurg,Konkan,Konkan,1253257.0,Vengurla,,IN,15.86667,73.633331,15.86667,73.66667,exact
+Ambarnath,Thane,Konkan,Konkan,1278903.0,Ambarnath,,IN,19.200001,73.166672,,,fuzzy(94.11764705882352)
+Bhiwandi,Thane,Konkan,Konkan,1275901.0,Bhiwandi,,IN,19.299999,73.066673,,,exact
+Kalyan,Thane,Konkan,Konkan,1268295.0,Kalyān,,IN,19.25,73.150002,19.23333,73.16667,exact
+Murbad,Thane,Konkan,Konkan,1262444.0,Murbād,,IN,19.25,73.400002,,,exact
+Shahapur,Thane,Konkan,Konkan,1256747.0,Shāhāpur,,IN,19.450001,73.333328,,,exact
+Thane,Thane,Konkan,Konkan,1254661.0,Thāne,,IN,19.200001,72.966667,19.2,73.03333,exact
+Ulhasnagar,Thane,Konkan,Konkan,1253894.0,Ulhasnagar,,IN,19.216669,73.150002,19.33333,73.16667,exact
+Aurangabad,Aurangabad,Aurangabad,Marathwada,1278146.0,Aurangabad,Maharashtra,IN,19.8833,75.3167,19.88333,75.38333,manual_correction
+Gangapur,Aurangabad,Aurangabad,Marathwada,1271675.0,Gangapur,Maharashtra,IN,19.7,75.0167,,,manual_correction
+Kannad,Aurangabad,Aurangabad,Marathwada,1268020.0,Kannad,,IN,20.26667,75.133331,,,exact
+Khuldabad,Aurangabad,Aurangabad,Marathwada,1266631.0,Khuldābād,,IN,20.049999,75.183327,,,exact
+Paithan,Aurangabad,Aurangabad,Marathwada,1260833.0,Paithan,,IN,19.48333,75.383331,19.48333,75.43333,exact
+Sillod,Aurangabad,Aurangabad,Marathwada,1256269.0,Sillod,,IN,20.299999,75.650002,,,exact
+Soegaon,Aurangabad,Aurangabad,Marathwada,1255766.0,Soegaon,Maharashtra,IN,20.6,75.6167,,,manual_correction
+Vaijapur,Aurangabad,Aurangabad,Marathwada,1253545.0,Vaijāpur,,IN,19.91667,74.73333,19.98333,74.8,exact
+Ambajogai,Beed,Aurangabad,Marathwada,1278862.0,Ambājogāi,,IN,18.73333,76.383331,,,exact
+Ashti,Beed,Aurangabad,Marathwada,1278290.0,Ashti,Maharashtra,IN,18.85,75.95,21.2,78.23333,manual_correction
+Dharur,Beed,Aurangabad,Marathwada,1272819.0,Dhārūr,,IN,18.816669,76.116669,,,exact
+Majalgaon,Beed,Aurangabad,Marathwada,1263684.0,Mājalgaon,,IN,19.15,76.23333,,,exact
+Parli,Beed,Aurangabad,Marathwada,1260716.0,Parli Vaijnath,Maharashtra,IN,18.8512,76.5356,18.88333,76.6,manual_correction
+Bhum,Dharashiv,Aurangabad,Marathwada,1275804.0,Bhūm,,IN,18.466669,75.666672,,,exact
+Kalamb,Dharashiv,Aurangabad,Marathwada,1268484.0,Kalamb,Maharashtra,IN,18.5667,76.0167,,,manual_correction
+Paranda,Dharashiv,Aurangabad,Marathwada,1694806.0,Paranda,Maharashtra,IN,18.6833,75.4667,,,manual_correction
+Tuljapur,Dharashiv,Aurangabad,Marathwada,1254111.0,Tuljāpur,,IN,18.0,76.083328,18.03333,76.16667,exact
+Umarga,Dharashiv,Aurangabad,Marathwada,1253870.0,Umarga,,IN,17.83333,76.616669,,,exact
+Washi,Dharashiv,Aurangabad,Marathwada,1252908.0,Washi,Maharashtra,IN,18.95,75.9333,,,manual_correction
+Basmath,Hingoli,Aurangabad,Marathwada,1276757.0,Basmath,,IN,19.316669,77.166672,,,fuzzy(92.3076923076923)
+Hingoli,Hingoli,Aurangabad,Marathwada,1270072.0,Hingoli,,IN,19.716669,77.150002,19.71667,77.18333,exact
+Kalamnuri,Hingoli,Aurangabad,Marathwada,1268480.0,Kalamnūri,,IN,19.66667,77.333328,,,exact
+Sengaon,Hingoli,Aurangabad,Marathwada,1256620.0,Sengaon,Maharashtra,IN,19.8,77.3667,,,manual_correction
+Ambad,Jalna,Aurangabad,Marathwada,1278871.0,Ambad,,IN,19.616671,75.800003,,,exact
+Badnapur,Jalna,Aurangabad,Marathwada,1277426.0,Badnapur,Maharashtra,IN,19.8667,75.7333,,,manual_correction
+Jalna,Jalna,Aurangabad,Marathwada,1269395.0,Jālna,,IN,19.83333,75.883331,19.85,75.93333,exact
+Mantha,Jalna,Aurangabad,Marathwada,1263610.0,Mantha,Maharashtra,IN,19.65,76.3833,,,manual_correction
+Partur,Jalna,Aurangabad,Marathwada,1260228.0,Partūr,,IN,19.6,76.216667,,,exact
+Ahmedpur,Latur,Aurangabad,Marathwada,1279225.0,Ahmedpur,Maharashtra,IN,18.7167,76.9333,,,manual_correction
+Ausa,Latur,Aurangabad,Marathwada,1278139.0,Ausa,,IN,18.25,76.5,,,exact
+Latur,Latur,Aurangabad,Marathwada,1265014.0,Latur,,IN,18.4,76.583328,18.4,76.6,exact
+Nilanga,Latur,Aurangabad,Marathwada,1261396.0,Nilanga,,IN,18.1,76.76667,,,exact
+Renapur,Latur,Aurangabad,Marathwada,1258537.0,Renapur,Maharashtra,IN,18.5167,76.6,,,manual_correction
+Udgir,Latur,Aurangabad,Marathwada,1253958.0,Udgīr,,IN,18.383329,77.116669,18.41667,77.16667,exact
+Biloli,Nanded,Aurangabad,Marathwada,1275601.0,Biloli,,IN,18.76667,77.73333,,,exact
+Dharmabad,Nanded,Aurangabad,Marathwada,1272857.0,Dharmābād,,IN,18.9,77.849998,,,exact
+Hadgaon,Nanded,Aurangabad,Marathwada,1270554.0,Hadgāon,,IN,19.5,77.666672,,,exact
+Himayatnagar,Nanded,Aurangabad,Marathwada,1270099.0,Himayatnagar,Maharashtra,IN,19.5,77.9,,,manual_correction
+Kandhar,Nanded,Aurangabad,Marathwada,1268004.0,Kandhar,Maharashtra,IN,18.8667,77.2,,,manual_correction
+Kinwat,Nanded,Aurangabad,Marathwada,1266518.0,Kinwat,,IN,19.633329,78.199997,,,exact
+Mahur,Nanded,Aurangabad,Marathwada,1264331.0,Mahur,Maharashtra,IN,19.85,77.9333,,,manual_correction
+Mudkhed,Nanded,Aurangabad,Marathwada,1262651.0,Mudkhed,,IN,19.16667,77.51667,,,exact
+Mukhed,Nanded,Aurangabad,Marathwada,1262651.0,Mukhed,,IN,18.7,77.37,,,manual_correction
+Naigaon,Nanded,Aurangabad,Marathwada,1262291.0,Naigaon,Maharashtra,IN,18.5,77.3667,,,manual_correction
+Umri,Nanded,Aurangabad,Marathwada,1253796.0,Umri,Maharashtra,IN,19.85,77.6,,,manual_correction
+Gangakhed,Parbhani,Aurangabad,Marathwada,1271688.0,Gangakhed,,IN,18.950001,76.75,,,fuzzy(88.88888888888889)
+Jintur,Parbhani,Aurangabad,Marathwada,1268896.0,Jintūr,,IN,19.616671,76.699997,,,exact
+Manwath,Parbhani,Aurangabad,Marathwada,1263591.0,Manwath,,IN,19.299999,76.5,,,fuzzy(92.3076923076923)
+Palam,Parbhani,Aurangabad,Marathwada,1260788.0,Palam,Maharashtra,IN,19.0167,76.8167,,,manual_correction
+Parbhani,Parbhani,Aurangabad,Marathwada,1260341.0,Parbhani,,IN,19.26667,76.783333,19.13333,76.08333,exact
+Pathri,Parbhani,Aurangabad,Marathwada,1260120.0,Pāthri,,IN,19.25,76.449997,,,exact
+Purna,Parbhani,Aurangabad,Marathwada,1259177.0,Pūrna,,IN,19.183331,77.050003,,,exact
+Ahmednagar,Ahmednagar,Nashik,North Maharashtra,1279228.0,Ahmadnagar,,IN,19.08333,74.73333,,,fuzzy(90.0)
+Karjat,Ahmednagar,Nashik,North Maharashtra,1267742.0,Karjat,,IN,18.91667,73.333328,,,exact
+Kopargaon,Ahmednagar,Nashik,North Maharashtra,1266162.0,Kopargaon,,IN,19.883329,74.48333,19.9,74.55,exact
+Nagar,Ahmednagar,Nashik,North Maharashtra,1262252.0,Ahmednagar,Maharashtra,IN,19.0833,74.7333,,,manual_correction
+Parner,Ahmednagar,Nashik,North Maharashtra,1260281.0,Parner,Maharashtra,IN,19.0,74.4333,,,manual_correction
+Pathardi,Ahmednagar,Nashik,North Maharashtra,1260135.0,Pāthardi,,IN,19.16667,75.183327,,,exact
+Rahuri,Ahmednagar,Nashik,North Maharashtra,1259019.0,Rāhuri,,IN,19.383329,74.650002,19.38333,74.7,exact
+Sangamner,Ahmednagar,Nashik,North Maharashtra,1257436.0,Sangamner,,IN,19.566669,74.216667,19.58333,74.26667,exact
+Shevgaon,Ahmednagar,Nashik,North Maharashtra,1256620.0,Shevgaon,Maharashtra,IN,19.35,75.2333,,,manual_correction
+Shrigonda,Ahmednagar,Nashik,North Maharashtra,1256426.0,Shrīgonda,,IN,18.616671,74.683327,18.68333,74.73333,exact
+Shrirampur,Ahmednagar,Nashik,North Maharashtra,1256422.0,Shrirampur,Maharashtra,IN,19.6167,74.65,,,manual_correction
+Baglan,Nashik,Nashik,North Maharashtra,1147540.0,Baglan (Satana),Maharashtra,IN,20.6,74.2,,,manual_correction
+Chandwad,Nashik,Nashik,North Maharashtra,1274693.0,Chandwad,Maharashtra,IN,20.3333,74.25,,,manual_correction
+Dindori,Nashik,Nashik,North Maharashtra,1272540.0,Dindori,,IN,20.2,73.88,,,manual_correction
+Igatpuri,Nashik,Nashik,North Maharashtra,1269810.0,Igatpuri,,IN,19.700001,73.550003,,,exact
+Kalwan,Nashik,Nashik,North Maharashtra,2774839.0,Kalwan,Maharashtra,IN,20.5,74.0333,,,manual_correction
+Malegaon,Nashik,Nashik,North Maharashtra,1264115.0,Mālegaon,,IN,20.549999,74.533333,20.5,74.66667,exact
+Nandgaon,Nashik,Nashik,North Maharashtra,1261968.0,Nandgaon,Maharashtra,IN,20.3167,74.65,,,manual_correction
+Nashik,Nashik,Nashik,North Maharashtra,1261731.0,Nashik,,IN,19.98333,73.800003,,,exact
+Sinnar,Nashik,Nashik,North Maharashtra,1256119.0,Sinnar,,IN,19.85,74.0,,,exact
+Surgana,Nashik,Nashik,North Maharashtra,1255348.0,Surgāna,,IN,20.566669,73.616669,,,exact
+Yeola,Nashik,Nashik,North Maharashtra,1252738.0,Yeola,,IN,20.033331,74.48333,20.06667,74.51667,exact
+Akola,Akola,Amravati,Vidarbha,1279105.0,Akola,,IN,20.73333,77.0,20.7,77.03333,exact
+Akot,Akola,Amravati,Vidarbha,1279094.0,Akot,,IN,21.09639,77.058609,21.1,77.1,exact
+Balapur,Akola,Amravati,Vidarbha,1277636.0,Bālāpur,,IN,20.66667,76.76667,20.7,76.86667,exact
+Murtajapur,Akola,Amravati,Vidarbha,1262410.0,Murtajāpur,,IN,20.73333,77.383331,,,exact
+Patur,Akola,Amravati,Vidarbha,1260035.0,Pātūr,,IN,20.450001,76.933327,,,exact
+Telhara,Akola,Amravati,Vidarbha,1254787.0,Telhāra,,IN,21.026939,76.83889,,,exact
+Achalpur,Amravati,Amravati,Vidarbha,1279390.0,Achalpur,,IN,21.257219,77.508614,21.3,77.55,exact
+Amravati,Amravati,Amravati,Vidarbha,1278718.0,Amrāvati,,IN,20.933331,77.75,20.93333,77.8,exact
+Chandur,Amravati,Amravati,Vidarbha,1274675.0,Chāndūr,,IN,20.816669,77.966667,,,exact
+Daryapur,Amravati,Amravati,Vidarbha,1273434.0,Daryāpur,,IN,20.933331,77.333328,,,exact
+Dhamangaon,Amravati,Amravati,Vidarbha,1272874.0,Dhamangaon,,IN,20.98,77.58,,,manual_correction
+Dharni,Amravati,Amravati,Vidarbha,1272861.0,Dharni,Maharashtra,IN,21.5333,77.1667,,,manual_correction
+Morshi,Amravati,Amravati,Vidarbha,1262740.0,Morshi,Maharashtra,IN,21.3333,78.0167,,,manual_correction
+Warud,Amravati,Amravati,Vidarbha,1252919.0,Warud,,IN,21.466669,78.26667,,,exact
+Bhandara,Bhandara,Nagpur,Vidarbha,1276191.0,Bhandāra,,IN,21.16667,79.650002,21.15,79.7,exact
+Tumsar,Bhandara,Nagpur,Vidarbha,1254080.0,Tumsar,,IN,21.383329,79.73333,,,exact
+Buldhana,Buldhana,Amravati,Vidarbha,1275117.0,Buldāna,,IN,20.533331,76.183327,,,fuzzy(93.33333333333333)
+Chikhli,Buldhana,Amravati,Vidarbha,1274235.0,Chikhli,,IN,20.75,73.066673,,,exact
+Deulgaon Raja,Buldhana,Amravati,Vidarbha,1273136.0,Deūlgaon Rāja,,IN,20.01667,76.033333,,,exact
+Jalgaon Jamod,Buldhana,Amravati,Vidarbha,1269406.0,Jalgaon Jamod,,IN,21.048611,76.534439,,,exact
+Khamgaon,Buldhana,Amravati,Vidarbha,1267084.0,Khāmgaon,,IN,20.683331,76.566673,20.7,76.61667,exact
+Lonar,Buldhana,Amravati,Vidarbha,1264794.0,Lonār,,IN,19.98333,76.533333,,,exact
+Malkapur,Buldhana,Amravati,Vidarbha,1264071.0,Malkāpur,,IN,20.883329,76.199997,20.88333,76.28333,exact
+Mehkar,Buldhana,Amravati,Vidarbha,1263195.0,Mehekar,,IN,20.15,76.566673,,,fuzzy(92.3076923076923)
+Motala,Buldhana,Amravati,Vidarbha,2690960.0,Motala,Maharashtra,IN,20.6167,76.2167,,,manual_correction
+Nandura,Buldhana,Amravati,Vidarbha,1261931.0,Nandura,Maharashtra,IN,20.8333,76.45,,,manual_correction
+Sangrampur,Buldhana,Amravati,Vidarbha,1271670.0,Sangrampur,Maharashtra,IN,21.0167,76.6833,,,manual_correction
+Shegaon,Buldhana,Amravati,Vidarbha,1256620.0,Shegaon,,IN,20.783331,76.683327,20.8,76.76667,exact
+Ballarpur,Chandrapur,Nagpur,Vidarbha,1277557.0,Ballālpur,,IN,19.83333,79.349998,,,fuzzy(88.88888888888889)
+Bhadravati,Chandrapur,Nagpur,Vidarbha,1276321.0,Bhadravati,,IN,20.11,79.11,,,manual_correction
+Chandrapur,Chandrapur,Nagpur,Vidarbha,1274714.0,Chandrapur,Maharashtra,IN,19.95,79.3,19.95,79.35,manual_correction
+Mul,Chandrapur,Nagpur,Vidarbha,1262574.0,Mūl,,IN,20.066669,79.666672,20.06667,79.71667,exact
+Rajura,Chandrapur,Nagpur,Vidarbha,1258786.0,Rājūra,,IN,19.783331,79.366669,,,exact
+Warora,Chandrapur,Nagpur,Vidarbha,1252925.0,Warora,,IN,20.23333,79.0,20.23333,79.03333,exact
+Aheri,Gadchiroli,Nagpur,Vidarbha,1277814.0,Aheri,Maharashtra,IN,19.4167,80.0,,,manual_correction
+Dhanora,Gadchiroli,Nagpur,Vidarbha,1272962.0,Dhanora,Maharashtra,IN,20.2667,80.0,,,manual_correction
+Amgaon,Gondia,Nagpur,Vidarbha,1267084.0,Amgaon,Maharashtra,IN,20.65,80.35,,,manual_correction
+Deori,Gondia,Nagpur,Vidarbha,1273201.0,Deori,,IN,21.18,80.31,,,manual_correction
+Gondia,Gondia,Nagpur,Vidarbha,1270990.0,Gondiā,,IN,21.450001,80.199997,21.46667,80.48333,exact
+Goregaon,Gondia,Nagpur,Vidarbha,1270914.0,Goregaon,Maharashtra,IN,20.97,80.22,,,manual_correction
+Kalameshwar,Nagpur,Nagpur,Vidarbha,1268344.0,Kalmeshwar,,IN,21.23333,78.900002,,,fuzzy(95.23809523809523)
+Katol,Nagpur,Nagpur,Vidarbha,1267461.0,Kātol,,IN,21.26667,78.583328,,,exact
+Ramtek,Nagpur,Nagpur,Vidarbha,1258553.0,Rāmtek,,IN,21.4,79.333328,,,exact
+Umred,Nagpur,Nagpur,Vidarbha,1253807.0,Umred,,IN,20.85,79.333328,,,exact
+Arvi,Wardha,Nagpur,Vidarbha,1278335.0,Ārvi,,IN,20.98333,78.23333,,,exact
+Ashti,Wardha,Nagpur,Vidarbha,1278290.0,Ashti,,IN,19.383329,76.23333,21.2,78.23333,exact
+Deoli,Wardha,Nagpur,Vidarbha,1273083.0,Deoli,,IN,25.75,75.383331,20.65,78.53333,exact
+Hinganghat,Wardha,Nagpur,Vidarbha,1270077.0,Hinganghāt,,IN,20.566669,78.833328,20.56667,78.88333,exact
+Karanja,Wardha,Nagpur,Vidarbha,1267853.0,Kāranja,,IN,20.48333,77.48333,20.48333,77.53333,exact
+Wardha,Wardha,Nagpur,Vidarbha,1252942.0,Wardha,,IN,20.75,78.616669,,,exact
+Karanja,Washim,Amravati,Vidarbha,1267853.0,Kāranja,,IN,20.48333,77.48333,20.48333,77.53333,exact
+Malegaon,Washim,Amravati,Vidarbha,1264115.0,Malegaon,,IN,20.32,77.52,20.5,74.66667,manual_correction
+Mangrulpir,Washim,Amravati,Vidarbha,1263744.0,Mangrūl Pīr,,IN,20.316669,77.349998,,,fuzzy(95.23809523809523)
+Manora,Washim,Amravati,Vidarbha,1263646.0,Manora,Maharashtra,IN,20.25,77.15,,,manual_correction
+Risod,Washim,Amravati,Vidarbha,1258124.0,Risod,,IN,19.966669,76.783333,,,exact
+Washim,Washim,Amravati,Vidarbha,1252908.0,Wāshīm,,IN,20.1,77.150002,,,exact
+Arni,Yavatmal,Amravati,Vidarbha,1278454.0,Arni,Maharashtra,IN,19.9833,78.0,,,manual_correction
+Darwha,Yavatmal,Amravati,Vidarbha,1273440.0,Dārwha,,IN,20.316669,77.76667,,,exact
+Digras,Yavatmal,Amravati,Vidarbha,1272596.0,Digras,,IN,20.116671,77.716667,,,exact
+Ghatanji,Yavatmal,Amravati,Vidarbha,1271343.0,Ghātanji,,IN,20.133329,78.316673,,,exact
+Kalamb,Yavatmal,Amravati,Vidarbha,1268484.0,Kalamb,,IN,20.47,78.32,,,manual_correction
+Maregaon,Yavatmal,Amravati,Vidarbha,1264115.0,Maregaon,Maharashtra,IN,20.1,78.15,,,manual_correction
+Pusad,Yavatmal,Amravati,Vidarbha,1259154.0,Pusad,,IN,19.9,77.583328,,,exact
+Ralegaon,Yavatmal,Amravati,Vidarbha,1264115.0,Ralegaon,Maharashtra,IN,20.25,78.5,,,manual_correction
+Umarkhed,Yavatmal,Amravati,Vidarbha,1253861.0,Umarkhed,,IN,19.6,77.699997,,,exact
+Wani,Yavatmal,Amravati,Vidarbha,1252960.0,Wani,,IN,20.066669,78.949997,,,exact
+Yavatmal,Yavatmal,Amravati,Vidarbha,1252770.0,Yavatmāl,,IN,20.4,78.133331,,,exact
+Ajra,Kolhapur,Pune,Western Maharashtra,1279154.0,Ajra,,IN,16.116671,74.199997,,,exact
+Chandgad,Kolhapur,Pune,Western Maharashtra,1274693.0,Chandgad,Maharashtra,IN,15.8667,74.2,,,manual_correction
+Gadhinglaj,Kolhapur,Pune,Western Maharashtra,1271834.0,Gadhinglaj,,IN,16.23333,74.349998,,,exact
+Kagal,Kolhapur,Pune,Western Maharashtra,1268651.0,Kāgal,,IN,16.58333,74.316673,,,exact
+Panhala,Kolhapur,Pune,Western Maharashtra,1260488.0,Panhāla,,IN,16.816669,74.116669,,,exact
+Baramati,Pune,Pune,Western Maharashtra,1277091.0,Bārāmati,,IN,18.15,74.583328,,,exact
+Bhor,Pune,Pune,Western Maharashtra,1275836.0,Bhor,,IN,18.16667,73.849998,18.15,73.9,exact
+Daund,Pune,Pune,Western Maharashtra,1273374.0,Daund,,IN,18.466669,74.599998,,,exact
+Indapur,Pune,Pune,Western Maharashtra,1269761.0,Indāpur,,IN,18.299999,73.25,,,exact
+Junnar,Pune,Pune,Western Maharashtra,1268761.0,Junnar,,IN,19.200001,73.883331,19.2,73.96667,exact
+Khed,Pune,Pune,Western Maharashtra,1266813.0,Khed (Rajgurunagar),,IN,18.87,73.89,18.85,73.93333,manual_correction
+Shirur,Pune,Pune,Western Maharashtra,1256475.0,Shirur,Maharashtra,IN,18.8167,74.3667,,,manual_correction
+Atpadi,Sangli,Pune,Western Maharashtra,1267456.0,Atpadi,Maharashtra,IN,17.4333,74.9333,,,manual_correction
+Jat,Sangli,Pune,Western Maharashtra,1269501.0,Jat,Maharashtra,IN,17.05,75.2167,,,manual_correction
+Khanapur,Sangli,Pune,Western Maharashtra,1267065.0,Khānāpur,,IN,15.63333,74.51667,,,exact
+Shirala,Sangli,Pune,Western Maharashtra,1256469.0,Shirala,Maharashtra,IN,17.1167,74.1333,,,manual_correction
+Tasgaon,Sangli,Pune,Western Maharashtra,1254858.0,Tāsgaon,,IN,17.033331,74.599998,,,exact
+Walwa,Sangli,Pune,Western Maharashtra,2144846.0,Walwa,Maharashtra,IN,16.9833,74.4333,,,manual_correction
+Karad,Satara,Pune,Western Maharashtra,1267904.0,Karād,,IN,17.283331,74.199997,17.25,74.2,exact
+Khandala,Satara,Pune,Western Maharashtra,1267044.0,Khandala,Maharashtra,IN,18.05,74.0167,,,manual_correction
+Koregaon,Satara,Pune,Western Maharashtra,1266116.0,Koregaon,,IN,18.65,74.083328,,,exact
+Mahabaleshwar,Satara,Pune,Western Maharashtra,1264491.0,Mahābaleshwar,,IN,17.91667,73.666672,17.96667,73.71667,exact
+Man,Satara,Pune,Western Maharashtra,,Man,Maharashtra,IN,17.8833,74.4333,,,manual_correction
+Patan,Satara,Pune,Western Maharashtra,1260173.0,Patan,Maharashtra,IN,17.3833,73.9,,,manual_correction
+Phaltan,Satara,Pune,Western Maharashtra,1259811.0,Phaltan,,IN,17.98333,74.433327,18.0,74.48333,exact
+Satara,Satara,Pune,Western Maharashtra,1257055.0,Satara,,IN,17.683331,73.98333,17.7,74.03333,exact
+Wai,Satara,Pune,Western Maharashtra,1253013.0,Wai,,IN,17.933331,73.900002,17.95,73.93333,exact
+Akkalkot,Solapur,Pune,Western Maharashtra,1279147.0,Akalkot,,IN,17.533331,76.216667,,,fuzzy(93.33333333333333)
+Barshi,Solapur,Pune,Western Maharashtra,1276856.0,Bārsi,,IN,18.23333,75.699997,,,fuzzy(90.9090909090909)
+Karmala,Solapur,Pune,Western Maharashtra,1267716.0,Karmāla,,IN,18.41667,75.199997,18.4,75.25,exact
+Pandharpur,Solapur,Pune,Western Maharashtra,1260546.0,Pandharpur,,IN,17.66667,75.333328,17.68333,75.38333,exact
+Sangole,Solapur,Pune,Western Maharashtra,1257409.0,Sāngola,,IN,17.433331,75.199997,,,fuzzy(85.71428571428572)
+Dhamangaon Railway,Amravati,,,,Dhamangaon Railway,Maharashtra,IN,20.9833,77.5833,,,manual_correction(added)
+Sangola,Solapur,,,,Sangola,Maharashtra,IN,17.4333,75.2,,,manual_correction(added)

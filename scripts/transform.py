@@ -118,8 +118,13 @@ def flatten_weather(record: dict) -> dict:
     """
     Flatten a single city dict from the 'weather_data' list (Open-Meteo).
 
-    `record` is the normalised shape extract_weather.fetch_weather() writes:
-        {city, country, latitude, longitude, current: {...}, hourly: {...}, daily: {...}}
+    `record` is the normalised shape extract_weather's fetch_weather_for_target()
+    / fetch_weather() write:
+        {city, country, district, division, region, latitude, longitude,
+         current: {...}, hourly: {...}, daily: {...}}
+    district/division/region are populated for cities sourced from
+    load_city_list() (e.g. maharashtra_tehsils_final.csv) and None for
+    ad-hoc/geocoded cities, which carry no administrative hierarchy.
 
     Temperatures are Celsius because the extractor requests temperature_unit=celsius.
     Column names match the engineered columns in maharashtra_weather_pipeline.ipynb.
@@ -151,6 +156,9 @@ def flatten_weather(record: dict) -> dict:
         # Identity
         "city":               record.get("city"),
         "country":            record.get("country"),
+        "district":           record.get("district"),
+        "division":           record.get("division"),
+        "region":             record.get("region"),
         "latitude":           record.get("latitude"),
         "longitude":          record.get("longitude"),
 

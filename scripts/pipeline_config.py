@@ -34,7 +34,7 @@ from typing import Optional
 
 STAGE_ORDER: list[str] = ["extract", "transform", "load"]
 
-REQUIRED_CONFIG_KEYS: frozenset[str] = frozenset({"cities"})
+REQUIRED_CONFIG_KEYS: frozenset[str] = frozenset()
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -63,8 +63,13 @@ class Defaults:
     http_timeout_seconds: int   = 10
 
     # Open-Meteo (no API key required)
-    geocoding_base_url: str = "https://geocoding-api.open-meteo.com/v1/search"
-    forecast_base_url:  str = "https://api.open-meteo.com/v1/forecast"
+    geocoding_base_url:  str = "https://geocoding-api.open-meteo.com/v1/search"
+    forecast_base_url:   str = "https://api.open-meteo.com/v1/forecast"
+    geocode_country_code: str = "IN"   # scopes the legacy name-based geocode_city()
+                                        # path so it can't drift to another country
+
+    # City list (primary source — pre-resolved lat/lon, no geocoding needed)
+    city_list_file: str = "data/maharashtra_tehsils_final.csv"
 
 
 DEFAULTS = Defaults()
@@ -137,12 +142,18 @@ def load_config(config_path: str = DEFAULTS.config_file) -> dict:
     if missing:
         raise ValueError(f"Config is missing required keys: {missing}")
 
-    if not isinstance(config["cities"], list) or not config["cities"]:
-        raise ValueError("Config 'cities' must be a non-empty list.")
+    has_cities    = isinstance(config.get("cities"), list) and bool(config.get("cities"))
+    has_city_list = isinstance(config.get("city_list_file"), str) and bool(config.get("city_list_file").strip())
 
-    bad_cities = [c for c in config["cities"] if not isinstance(c, str) or not c.strip()]
-    if bad_cities:
-        raise ValueError(f"Config 'cities' contains invalid entries: {bad_cities}")
+    if not has_cities and not has_city_list:
+        raise ValueError(
+            "Config must provide a non-empty 'cities' list and/or a 'city_list_file' path."
+        )
+
+    if has_cities:
+        bad_cities = [c for c in config["cities"] if not isinstance(c, str) or not c.strip()]
+        if bad_cities:
+            raise ValueError(f"Config 'cities' contains invalid entries: {bad_cities}")
 
     return config
 

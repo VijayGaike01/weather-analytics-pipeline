@@ -84,12 +84,19 @@ def run_extract(config: dict, logger: logging.Logger) -> StageResult:
     """
     Stage 1 — Fetch live weather data from Open-Meteo (no API key required).
 
+    Pulls cities from up to two sources, combined:
+      - config['city_list_file']  → load_city_list()        → fetch_weather_for_target()
+                                     (primary — pre-resolved lat/lon, no geocoding,
+                                     carries district/division/region)
+      - config['cities']          → geocode_city() + forecast → fetch_weather()
+                                     (ad-hoc/test names only, country-scoped geocoding)
+
     Produces:  data/raw/weather_<timestamp>.json
     Returns:   StageResult.files_out = [path_to_raw_json]
     """
     from extract_weather import (
-        build_session, fetch_weather, save_output,
-        load_geocode_cache, save_geocode_cache,
+        build_session, fetch_weather, fetch_weather_for_target, save_output,
+        load_geocode_cache, save_geocode_cache, load_city_list,
     )
 
     result = StageResult(
@@ -99,24 +106,40 @@ def run_extract(config: dict, logger: logging.Logger) -> StageResult:
     )
 
     timestamp          = datetime.now(tz=timezone.utc).strftime("%Y%m%d_%H%M%S")
-    cities              = [c.strip() for c in config["cities"]]
+    city_list_file      = config.get("city_list_file",         DEFAULTS.city_list_file)
+    adhoc_cities         = [c.strip() for c in config.get("cities", [])]
     units               = config.get("units",                   DEFAULTS.units)
     output_dir          = config.get("output_dir",              DEFAULTS.raw_folder)
     delay               = float(config.get("request_delay_seconds", DEFAULTS.request_delay_seconds))
     geocode_cache_file  = config.get("geocode_cache_file",      DEFAULTS.geocode_cache_file)
+    country_code        = config.get("geocode_country_code",    DEFAULTS.geocode_country_code)
+
+    targets: list[dict] = []
+    if city_list_file:
+        try:
+            targets = load_city_list(city_list_file, logger)
+        except (FileNotFoundError, ValueError) as e:
+            return result.complete("FAILED", error=f"City list error: {e}")
+
+    if not targets and not adhoc_cities:
+        return result.complete(
+            "FAILED",
+            error="No cities configured — set 'city_list_file' and/or 'cities' in config.json.",
+        )
 
     session       = build_session(
         retries        = config.get("http_retries",        DEFAULTS.http_retries),
         backoff_factor = config.get("http_backoff_factor", DEFAULTS.http_backoff_factor),
         timeout        = config.get("http_timeout_seconds", DEFAULTS.http_timeout_seconds),
     )
-    geocode_cache = load_geocode_cache(geocode_cache_file)
+    geocode_cache = load_geocode_cache(geocode_cache_file) if adhoc_cities else {}
 
     successful_cities: list[dict] = []
     failed_cities:     list[dict] = []
 
-    for city in cities:
-        weather, err = fetch_weather(city, session, logger, geocode_cache, units)
+    # Primary source: pre-resolved coordinates, no geocoding.
+    for target in targets:
+        weather, err = fetch_weather_for_target(target, session, logger, units)
         if weather:
             successful_cities.append(weather)
         else:
@@ -124,10 +147,21 @@ def run_extract(config: dict, logger: logging.Logger) -> StageResult:
         if delay > 0:
             time.sleep(delay)
 
-    try:
-        save_geocode_cache(geocode_cache, geocode_cache_file)
-    except OSError as e:
-        logger.warning("Could not persist geocode cache: %s", e)
+    # Secondary source: ad-hoc / test names, geocoded (country-scoped).
+    for city in adhoc_cities:
+        weather, err = fetch_weather(city, session, logger, geocode_cache, units, country_code)
+        if weather:
+            successful_cities.append(weather)
+        else:
+            failed_cities.append(err)
+        if delay > 0:
+            time.sleep(delay)
+
+    if adhoc_cities:
+        try:
+            save_geocode_cache(geocode_cache, geocode_cache_file)
+        except OSError as e:
+            logger.warning("Could not persist geocode cache: %s", e)
 
     if not successful_cities:
         return result.complete(
@@ -135,9 +169,10 @@ def run_extract(config: dict, logger: logging.Logger) -> StageResult:
             error = "All city requests failed — no data written.",
         )
 
+    total_requested = len(targets) + len(adhoc_cities)
     payload = {
         "ingestion_timestamp": timestamp,
-        "total_requested":     len(cities),
+        "total_requested":     total_requested,
         "successful_records":  len(successful_cities),
         "failed_records":      len(failed_cities),
         "units":               units,
@@ -152,7 +187,7 @@ def run_extract(config: dict, logger: logging.Logger) -> StageResult:
 
     logger.info(
         "Extract: %d/%d cities fetched → %s",
-        len(successful_cities), len(cities), out_path,
+        len(successful_cities), total_requested, out_path,
     )
 
     return result.complete(
