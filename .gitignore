@@ -12,9 +12,9 @@ data/processed_metadata/*.json
 data/load_metadata/*.json
 
 database/*
-database/weather.db
+!database/weather.db
 
-powerbi/weather_dataset.csv
+!powerbi/weather_dataset.csv
 
 .idea/
 .vscode/
